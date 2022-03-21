@@ -6,17 +6,19 @@
             ["react-dom" :as rdom]))
 
 (def app
-  {:keechma.subscriptions/batcher rdom/unstable_batchedUpdates,
-
+  {:keechma.subscriptions/batcher rdom/unstable_batchedUpdates
    :keechma/controllers
-   {:router #:keechma.controller
-    {:params true,
-     :type :keechma/router,
-     :keechma/routes
-     [["" {:page "home"}] ":page"]},
-    :dataloader #:keechma.controller
-    {:params true, :type :keechma/dataloader},
-    :entitydb #:keechma.controller
-    {:params true,
-     :type :keechma/entitydb,
+
+   {:router #:keechma.controller 
+    {:params true 
+     :type :keechma/router 
+     :keechma/routes [["" {:page "home"}] ":page" ":page/:subpage"]}
+
+    :dataloader #:keechma.controller 
+    {:params true 
+     :type :keechma/dataloader}
+
+    :entitydb #:keechma.controller 
+    {:params true 
+     :type :keechma/entitydb 
      :keechma.entitydb/schema {}}}})
