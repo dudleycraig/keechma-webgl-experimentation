@@ -4,27 +4,17 @@
  :builds 
  {:app 
   {:target :browser
-   :build-hooks [(build/load-env)]
-   ;; :build-hooks [(shadow.cljs.build-report/hook)]
-
-   :js-options ;; prevent non-declared variables in libraries breaking build
-   {:entry-keys ["module" "browser" "main"]} 
-
    :output-dir "public/js"
-
    :asset-path "/js"
-
+   :js-options {:entry-keys ["module" "browser" "main"]} 
    :module-hash-names true
-
-   :modules 
-   {:package 
-    {:init-fn main.core/init
-     :entries [main.core]}}
-
-   :devtools 
-   {:before-load main.core/before-load
-    :after-load main.core/after-load
-    :watch-dir "public"
-    :watch-path "public"
-    :http-root "public"
-    :http-port 8081}}}}
+   :modules {:package {:init-fn main.core/init}}
+   :devtools {:before-load main.core/before-load
+              :after-load main.core/after-load
+              :watch-dir "public"
+              :watch-path "public"
+              :http-root "public"
+              :http-port 8081}
+   ;; :build-hooks [(build/load-env)]
+   ;; :build-hooks [(shadow.cljs.build-report/hook)]
+   }}}
