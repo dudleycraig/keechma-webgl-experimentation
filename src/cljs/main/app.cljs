@@ -5,14 +5,6 @@
             [keechma.next.controllers.dataloader]
             ["react-dom" :as rdom]))
 
-(defn page-eq? [page] (fn [{:keys [router]}] (= page (:page router))))
-
-(defn role-eq? [role] (fn [deps] (= role (:role deps))))
-
-(defn slug [{:keys [router]}] (:slug router))
-
-(def homepage? (page-eq? "home"))
-
 (def app
   {:keechma.subscriptions/batcher rdom/unstable_batchedUpdates,
 
@@ -27,5 +19,4 @@
     :entitydb #:keechma.controller
     {:params true,
      :type :keechma/entitydb,
-     :keechma.entitydb/schema
-     {}}}})
+     :keechma.entitydb/schema {}}}})

@@ -1,6 +1,8 @@
 (ns main.core
   (:require ["react" :as react]
             ["react-dom" :as rdom]
+            ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
+            ["@fortawesome/free-solid-svg-icons" :refer [faEnvelope faImages faHome faUser]]
 
             [helix.core :as hx :refer [$ <> suspense]]
             [helix.dom :as d]
@@ -12,26 +14,20 @@
             [keechma.next.helix.lib :refer [defnc]]
             [keechma.next.controllers.pipelines :refer [throw-promise!]]
 
-            [main.app :refer [app]]))
+            [main.app :refer [app]]
+            [main.ui.pages.home :refer [Home]]))
 
 (defonce app-instance* (atom nil))
 
-(defnc HomePage [props]
-    (d/div 
-      {:style {:width "100%" :height "30px" :background "#cfcfcf"}}
-      "home"))
-
-(def Home (with-keechma HomePage))
-
 (defnc Stage [props]
-    (suspense
-      {:fallback (d/div "Loading ...")}
-      (let [{:keys [page]} (use-sub props :router)]
-        (d/div
-          (suspense {:fallback (d/div {:class "container"} "Loading ...")}
-                    (case page
-                      "home" ($ Home)
-                      (d/div "404")))))))
+  (suspense
+    {:fallback (d/div "Loading ...")}
+    (let [{:keys [page]} (use-sub props :router)]
+      (d/div
+        (suspense {:fallback (d/div {:class "container"} "Loading ...")}
+                  (case page
+                    "home" ($ Home)
+                    (d/div "404")))))))
 
 (def Main (with-keechma Stage))
 
