@@ -1,0 +1,57 @@
+{
+  "name": "experimentation",
+  "version": "1.0.0",
+  "description": "keechma-next experimentation",
+  "private": true,
+  "scripts": {
+    "node-sass": "node-sass -w ./src/cljs/style/core.scss ./public/css/core.css --output-style compressed",
+    "dev": "shadow-cljs watch app -A:frontend:vim --config-merge config.edn",
+    "frontend": "concurrently 'npm:dev' 'npm:node-sass'",
+    "backend": "iced repl -A:dev:backend"
+  },
+  "browserslist": [
+    "last 1 Chrome version"
+  ],
+  "dependencies": {
+    "@firebase/auth": "^0.19.2",
+    "@firebase/firestore": "^3.3.0",
+    "@fortawesome/fontawesome-free": "^5.14.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.30",
+    "@fortawesome/free-brands-svg-icons": "^5.15.2",
+    "@fortawesome/free-regular-svg-icons": "^5.15.2",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.11",
+    "@react-three/drei": "^8.10.1",
+    "@react-three/fiber": "^7.0.6",
+    "@restart/hooks": "0.3.27",
+    "bootstrap": "^4.5.3",
+    "bootswatch": "^4.5.2",
+    "create-react-class": "^15.6.2",
+    "d3": "^6.7.0",
+    "firebase": "^9.4.0",
+    "moment": "^2.29.1",
+    "prop-types-extra": "^1.1.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.4.0",
+    "react-colorful": "^4.4.4",
+    "react-dom": "^17.0.2",
+    "react-overlays": "^5.1.1",
+    "react-refresh": "0.8.1",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "three": "^0.137.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.3.3",
+    "babel-polyfill": "^6.26.0",
+    "concurrently": "^5.3.0",
+    "firebase-admin": "^10.0.0",
+    "firebase-functions": "^3.16.0",
+    "firebase-tools": "^9.22.0",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^10.2.1",
+    "shadow-cljs": "^2.15.8",
+    "stylelint": "^13.7.1"
+  }
+}

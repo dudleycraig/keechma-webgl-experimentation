@@ -1,0 +1,32 @@
+{
+ :production 
+ {:firebase
+  {:api-key "AIzaSyDegND1W5CPpHnlcT3f0AwICkJwI8QWQvY"
+   :auth-domain "functional-256207.firebaseapp.com"
+   :project-id "functional-256207"
+   :storage-bucket "functional-256207.appspot.com"
+   :messaging-sender-id "996616380561"
+   :app-id "1:996616380561:web:406750a7fa6668ac8e5f30"
+   :measurement-id "G-S3RWRYJ7VL",
+   :database-url "https://functional-256207-default-rtdb.europe-west1.firebasedatabase.app"}
+
+  :afrigis
+  {:trial true ;; TODO: update for true production 
+   :baseUrl "https://saas.afrigis.co.za/rest/2"
+   :key "93bc02c086"
+   :secret "7d4fd1b64266"}
+
+  :gisdb
+  {:database "fgis"
+   :user "postgres"
+   :password "password"
+   :domain "localhost"
+   :port "5432"
+   :protocol "jdbc:postresql"
+   :url "jdbc:postgresql://localhost:5432/fgis?user=postgres&password=password"}
+
+  :mailservice
+  {:domain "197.242.147.210"
+   :port 80
+   :protocol "http"
+   :uri "/contact"}}}

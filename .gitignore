@@ -1,0 +1,27 @@
+/.cpcache/
+/.nrepl-port
+/.shadow-cljs/
+/node_modules/
+/public/js/cljs-runtime/
+/public/js/manifest.edn
+/public/js/*.js
+!/public/js/ziggy.js
+/public/js/*.map
+/public/css/*.css
+/public/js/report.html
+/resources/models
+/resources/materials
+/resources/textures
+/pingcrm.jar
+*js.map
+
+# VIM editor
+.vimrc
+.vim/
+coc-settings.json
+.tern-project
+.prettierrc
+config.edn
+tags
+tags.lock
+tags.temp
