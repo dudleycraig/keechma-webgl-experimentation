@@ -40,9 +40,7 @@
 
     ($ FontAwesomeIcon {& (merge {:icon icon :size "1x" :spin false} (status-to-icon-attributes (keyword status)))})
 
-    (d/span 
-      {:class "ml-2"} 
-      label)))
+    (d/span {:class "ml-2"} label)))
 
 
 

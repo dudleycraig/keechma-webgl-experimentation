@@ -22,12 +22,7 @@
         (d/div {:class "col"} "home"))
       (d/div {:class "row"}
         (d/div {:class "col"}
-          ($ StateButton 
-             {:class "timeout" 
-              :status (timeout :status) 
-              :icon faUser 
-              :label (str "status::" (timeout :status)) 
-              :onClick (fn [event] (dispatch props :timeout :inc "active"))}))))))
+          ($ StateButton {:class "timeout" :status (timeout :status) :icon faUser :label (str "status::" (timeout :status)) :onClick (fn [event] (dispatch props :timeout :on-click "active"))}))))))
 
 (def Home (with-keechma Container))
 
