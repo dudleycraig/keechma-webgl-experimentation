@@ -29,6 +29,16 @@
       :type :keechma/entitydb
       :keechma.entitydb/schema {}}
 
+
+;;      :signin/credentials
+;;      #:keechma.controller
+;;       {:params (fn [{:keys [signin]}]
+;;                  (let [{:keys [active-states data]} signin]
+;;                    {:credentials data}))
+;;        :deps [:signin]
+;;        :type :auth/credentials
+;;        :_/on-submit (event/to-dispatch :signin :on-submit)}
+
     :timeout
     #:keechma.controller
      {:params true}}})

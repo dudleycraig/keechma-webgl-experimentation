@@ -16,13 +16,14 @@
    [main.ui.components.state-button :refer [StateButton]]))
 
 (defnc Container [props]
-  (let [timeout (use-sub props :timeout)]
+  (let [{:keys [active-states data]} (use-sub props :timeout)
+        status (data :status)]
     (d/div {:class "container" :style {:margin-top "60px"} :id "home"}
       (d/div {:class "row"}
         (d/div {:class "col"} "home"))
       (d/div {:class "row"}
         (d/div {:class "col"}
-          ($ StateButton {:class "timeout" :status (timeout :status) :icon faUser :label (str "status::" (timeout :status)) :onClick (fn [event] (dispatch props :timeout :on-click "active"))}))))))
+          ($ StateButton {:class "timeout" :status status :icon faUser :label (str "status::" status) :onClick (fn [event] (dispatch props :timeout :on-click "active"))}))))))
 
 (def Home (with-keechma Container))
 
