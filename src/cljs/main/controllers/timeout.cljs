@@ -16,11 +16,12 @@
 
 (derive :timeout ::controllers-pipelines/controller)
 
-(defn wrand [slices]
+(defn wrand
   "weighed random generator. 
   Given a vector of integers, 
   and using those integer values as weights, 
-  returns random index from vector"
+  returns random weighted index from vector"
+  [slices]
   (let [total (reduce + slices)
         r (rand total)]
     (loop [i 0 sum 0]
@@ -29,15 +30,19 @@
         i
         (recur (inc i) (+ (slices i) sum))))))
 
-(defn contrived-async-promise []
+(defn contrived-async-promise
+  "an asyncronous process meant to mimic an ajax transaction 
+  returns a promise"
+  []
   (promesa/create
    (fn [resolve reject]
      (js/setTimeout
-      (fn [] (case (wrand [6 3 3])
-               0 (do (js/console.log "success triggered") (resolve {:status "success"}))
-               1 (do (js/console.warn "warning triggered") (resolve {:status "warning"}))
-               2 (do (js/console.error "error triggered") (reject {:status "error"}))
-               (do (js/console.error "default triggered") (reject {:status "error"}))))
+      (fn []
+        (case (wrand [6 3 20])
+          0 (do (js/console.log "success triggered") (resolve {:status "success" :message "A contrived success message."}))
+          1 (do (js/console.warn "warning triggered") (resolve {:status "warning" :message "A contrived warning message."}))
+          2 (do (js/console.error "error triggered") (reject {:status "error" :message "A contrived error message."}))
+          (do (js/console.error "default triggered") (reject {:status "error" :message "Failed retrieving a contrived message."}))))
       1500))))
 
 (def state-machine
@@ -48,8 +53,7 @@
     [:fsm/transition #:fsm.transition
                       {:event :on-click
                        :fsm/on (fn [state-machine {:keys [data]}]
-                                 (let [{:keys [status]} data]
-                                   (fsm/send (fsm/update-data state-machine assoc :status status) {:fsm/event ::init})))}]
+                                 (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::init}))}]
 
     [:fsm/transition #:fsm.transition
                       {:event :on-init-response
@@ -70,45 +74,35 @@
 
     [:fsm/transition #:fsm.transition
                       {:event :on-active-error
-                       :target :error
-                       :fsm/on (fn [state-machine {:keys [data]}]
-                                 (let [{::keys [error-msg]} (ex-data data)]
-                                   (cond-> state-machine
-                                     true (fsm/assoc-in-data [:error] {:title (ex-message data)
-                                                                       :body (-> data ex-data :message)})
-                                     error-msg (fsm/assoc-in-data [:error-msg] error-msg))))}]]
+                       :target :error}]]
 
    ;; success state
    [:fsm/state#success
     {:fsm.on/enter (fn [state-machine {:keys [data]}]
-                     (let [{:keys [status]} data]
-                       (fsm/send (fsm/update-data state-machine assoc :status status) {:fsm/event ::success})))}
+                     (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::success}))}
 
     [:fsm/transition #:fsm.transition
                       {:event :on-success-response
                        :target :inert
                        :fsm/on (fn [state-machine {:keys [data]}]
-                                 (let [{:keys [status]} data]
-                                   (fsm/update-data state-machine assoc :status status)))}]]
+                                 (fsm/update-data state-machine merge data))}]]
 
    ;; warning state
    [:fsm/state#warning
     {:fsm.on/enter (fn [state-machine {:keys [data]}]
-                     (let [{:keys [status]} data]
-                       (fsm/send (fsm/update-data state-machine assoc :status status) {:fsm/event ::warning})))}
+                     (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::warning}))}
 
     [:fsm/transition #:fsm.transition
                       {:event :on-warning-response
                        :target :inert
                        :fsm/on (fn [state-machine {:keys [data]}]
-                                 (let [{:keys [status]} data]
-                                   (fsm/update-data state-machine assoc :status status)))}]]
+                                 (fsm/update-data state-machine merge data))}]]
 
    ;; error state
    [:fsm/state#error
-    {:fsm.on/exit (fn [state-machete {:keys [data]}]
-                    (let [{:keys [status]} data]
-                      (fsm/update-data state-machine assoc :status status)))}]])
+    {:fsm.on/enter (fn [state-machine {:keys [data]}]
+                     (let [exception-data (ex-data data)]
+                       (fsm/update-data state-machine merge exception-data)))}]])
 
 (defmethod keechma-controller/prep :timeout [controller]
   (register
@@ -125,22 +119,21 @@
        (let [data (fsm/get-data @state*)]
          (-> (contrived-async-promise)
              (promesa/then (fn [response] response))
-             (promesa/catch (fn [error] error))))
-       (println "payoad: " payload))
+             (promesa/catch (fn [error] (throw (ex-info (:message error) error)))))))
      :active)
 
     ::success
     (pipelines/set-queue
      (pipeline! [payload {:keys [state*]}]
        (promesa/delay 750)
-       (let [data (fsm/get-data @state*)] data))
+       {:status "inert"})
      :success)
 
     ::warning
     (pipelines/set-queue
      (pipeline! [payload {:keys [state*]}]
        (promesa/delay 750)
-       (let [data (fsm/get-data @state*)] data))
+       {:status "inert"})
      :warning)}))
 
 (defmethod keechma-controller/start :timeout [_ _ _]
