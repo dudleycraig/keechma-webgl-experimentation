@@ -17,7 +17,7 @@
 (derive :timeout ::controllers-pipelines/controller)
 
 (defn wrand
-  "weighed random generator. 
+  "weighted random generator. 
   Given a vector of integers, 
   and using those integer values as weights, 
   returns random weighted index from vector"
@@ -54,7 +54,6 @@
                       {:event :on-click
                        :fsm/on (fn [state-machine {:keys [data]}]
                                  (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::init}))}]
-
     [:fsm/transition #:fsm.transition
                       {:event :on-init-response
                        :target :active}]]
@@ -63,15 +62,12 @@
    [:fsm/state#active
     {:fsm.on/enter (fn [state-machine {:keys [data]}]
                      (fsm/send state-machine {:fsm/event ::active}))}
-
     [:fsm/transition #:fsm.transition
                       {:event :on-active-response
                        :target :success}]
-
     [:fsm/transition #:fsm.transition
                       {:event :on-active-warning
                        :target :warning}]
-
     [:fsm/transition #:fsm.transition
                       {:event :on-active-error
                        :target :error}]]
@@ -80,7 +76,6 @@
    [:fsm/state#success
     {:fsm.on/enter (fn [state-machine {:keys [data]}]
                      (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::success}))}
-
     [:fsm/transition #:fsm.transition
                       {:event :on-success-response
                        :target :inert
@@ -91,7 +86,6 @@
    [:fsm/state#warning
     {:fsm.on/enter (fn [state-machine {:keys [data]}]
                      (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::warning}))}
-
     [:fsm/transition #:fsm.transition
                       {:event :on-warning-response
                        :target :inert
