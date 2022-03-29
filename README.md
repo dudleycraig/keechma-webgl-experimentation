@@ -14,19 +14,16 @@
 
 This is a quick overview on applying a state machine to a keechma controller.
 
-The example is of button triggering a state cascade, from an "inert" state, transitioning to "active", "success", and finally transitioning back to "inert".
+The example is of button triggering a state cascade, from an "inert" state, transitioning to "active", "success", and finaly transitioning back to "inert".
 ```
             inert
               |
-              v
             active
+              |
     +---------+---------+
-    |         |         |
-    v         v         v
  success   warning    error
     +---------+---------+
               |
-              v
             inert
 ```
 
