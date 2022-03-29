@@ -9,7 +9,9 @@
             [helix.hooks :as hooks]
             
             [keechma.next.helix.core :refer [with-keechma use-sub use-meta-sub dispatch KeechmaRoot]]
-            [keechma.next.helix.lib :refer [defnc]]))
+            [keechma.next.helix.lib :refer [defnc]]
+
+            [main.ui.components.time :refer [Time]]))
 
 (defnc Messages [{:keys [messages class]
                   :or {messages [] class ""}
@@ -22,14 +24,15 @@
      :success "success"
      :error "danger"})
 
-  (d/ul {:class (str "messages " class)}
+  (d/ul {:class (str "messages list-group" class)}
     (into
      []
      (map-indexed
        (fn [index {:keys [text status timestamp]
-                   :or {text "Unknown error found." status "error" timestamp (.getTime (js/Date.))}
+                   :or {text "Undefined error." status "error" timestamp (.getTime (js/Date.))}
                    :as message}]
-         (d/li {:class (str "message " (status-to-variant (keyword status))) :key (str "message-" index)}
-           text))
+         (d/li {:class (str "message my-1 rounded list-group-item list-group-item-" (status-to-variant (keyword status))) :key (str "message-" index)}
+           ($ Time timestamp)
+           (d/span {:class "text pl-2"} text)))
        messages))))
 

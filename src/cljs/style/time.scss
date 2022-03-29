@@ -1,0 +1,10 @@
+.time {
+  .hours .minutes .seconds .milliseconds {
+    color: inherit;
+  }
+
+  .milliseconds {
+    font-size: 0.8em;
+    opacity: 0.8;
+  }
+}

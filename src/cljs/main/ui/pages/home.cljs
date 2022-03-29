@@ -18,24 +18,29 @@
 
 (defnc Container [props]
   (let [{:keys [active-states data]} (use-sub props :timeout)
-        status (data :status)]
+        {:keys [status messages]} data]
 
     (d/div {:class "container" :style {:margin-top "60px"} :id "home"}
 
-      (d/div {:class "row"}
+      (d/div {:class "row mb-2"}
         (d/div {:class "col"}
           "home"))
 
-      (d/div {:class "row"}
+      (d/div {:class "row mb-2"}
         (d/div {:class "col"}
-          ($ StateButton {:class "timeout" :status status :icon faUser :label (str "status::" status) :onClick (fn [event] (dispatch props :timeout :on-click {:status "active"}))})))
+          ($ StateButton {:class "timeout"
+                          :status status
+                          :icon faUser
+                          :label (str "status::" status)
+                          :onClick (fn [event] (dispatch props :timeout :init))})
+          (d/button {:class "btn btn-outline-secondary d-inline-flex flex-row justify-content-center align-items-center ml-2"
+                     :disabled (not= status "error")
+                     :onClick (fn [event] (dispatch props :timeout :reset))}
+            "reset")))
 
-      (d/div {:class "row"}
+      (d/div {:class "row mb-2"}
         (d/div {:class "col"}
-          ($ Messages {:messages (let [now (.getTime (js/Date.))] [{:text "test success message" :status "success" :timestamp now}
-                                                                   {:text "test warning message" :status "warning" :timestamp now}
-                                                                   {:text "test error message" :status "error" :timestamp now}])})))
-      )))
+          ($ Messages {:messages (let [now (.getTime (js/Date.))] messages)}))))))
 
 (def Home (with-keechma Container))
 

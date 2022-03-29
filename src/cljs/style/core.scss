@@ -13,22 +13,11 @@ $fa-font-path: '../../node_modules/@fortawesome/fontawesome-free/webfonts';
 @import '../../../node_modules/bootstrap/scss/bootstrap.scss';
 @import '../../../node_modules/bootswatch/dist/slate/_bootswatch.scss';
 
+// components
+@import './time.scss';
+@import './messages.scss';
+@import './status_button.scss';
+
+// pages
 @import './home.scss';
 
-.status-button {
-  min-width: 30px;
-  min-height: 30px;
-
-  svg {
-  }
-
-  span {
-  }
-}
-
-.status-button.timeout {
-  span {
-    min-width: 105px;
-    text-align: center
-  }
-}

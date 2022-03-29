@@ -24,9 +24,9 @@
      :error {:icon faExclamation}})
 
   (def status-to-variant
-    {:inert "primary"
+    {:inert "secondary"
      :warning "warning"
-     :active "secondary"
+     :active "primary"
      :success "success"
      :error "danger"})
 
