@@ -21,3 +21,12 @@ $fa-font-path: '../../node_modules/@fortawesome/fontawesome-free/webfonts';
 // pages
 @import './home.scss';
 
+// remove border events
+.btn,
+.btn:hover,
+.btn:active,
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
