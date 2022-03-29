@@ -1,6 +1,6 @@
-![dynamic screenshot](https://raw.githubusercontent.com/dudleycraig/functional/master/server/public/images/contrived-status.screenshot.gif)
+![dynamic screenshot](https://raw.githubusercontent.com/dudleycraig/keechma-webgl-experimentation/master/public/images/contrived-status.screenshot.gif)
 
-[experimentation](http://functional.org.za/experimentation)
+[experimentation](http://functional.org.za/keechma-webgl-experimentation)
 
 ## installation and running
 
