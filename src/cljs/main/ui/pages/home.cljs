@@ -31,7 +31,7 @@
           ($ StateButton {:class "timeout"
                           :status status
                           :icon faUser
-                          :label "contrived button" 
+                          :label "contrive status" 
                           :onClick (fn [event] (dispatch props :timeout :init))})
           (d/button {:class "btn btn-outline-secondary d-inline-flex flex-row justify-content-center align-items-center ml-2"
                      :disabled (not= status "error")
