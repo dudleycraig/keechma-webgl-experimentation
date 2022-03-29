@@ -16,16 +16,23 @@ This is a quick overview on applying a state machine to a keechma controller.
 
 The example is of button triggering a state cascade, from an "inert" state, transitioning to "active", "success", and finally transitioning back to "inert".
 ```
-inert -> active |-> success -> inert
-                |
-                |-> warning -> inert
-                |
-                |-> error -> reset -> inert
+            inert
+              |
+              v
+            active
+    +---------+---------+
+    |         |         |
+    v         v         v
+ success   warning    error
+    +---------+---------+
+              |
+              v
+            inert
 ```
 
 During the "active" state, a contrived promise is created from a simple setTimeout within the pipeline and has a weighted chance of returning either a status of "success", "warning", or "error".  
 
-The basic flow of the controller (/src/cljs/main/controllers/contrived.cljs) can be summarised as follows ...
+The basic flow of the controller (mapped out in /src/cljs/main/controllers/contrived.cljs) can be summarised as follows ...
 ```
 :inert
   handle ":init"
