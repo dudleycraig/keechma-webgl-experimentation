@@ -17,7 +17,7 @@
             [main.ui.components.state-button :refer [StateButton]]))
 
 (defnc Container [props]
-  (let [{:keys [active-states data]} (use-sub props :timeout)
+  (let [{:keys [active-states data]} (use-sub props :contrived)
         {:keys [status messages]} data]
 
     (d/div {:class "container" :style {:margin-top "60px"} :id "home"}
@@ -28,14 +28,14 @@
 
       (d/div {:class "row mb-2"}
         (d/div {:class "col"}
-          ($ StateButton {:class "timeout"
+          ($ StateButton {:class "contrived"
                           :status status
                           :icon faUser
                           :label "contrive status" 
-                          :onClick (fn [event] (dispatch props :timeout :init))})
+                          :onClick (fn [event] (dispatch props :contrived :init))})
           (d/button {:class "btn btn-outline-secondary d-inline-flex flex-row justify-content-center align-items-center ml-2"
                      :disabled (not= status "error")
-                     :onClick (fn [event] (dispatch props :timeout :reset))}
+                     :onClick (fn [event] (dispatch props :contrived :reset))}
             "reset status")))
 
       (d/div {:class "row mb-2"}

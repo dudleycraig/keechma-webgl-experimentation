@@ -6,7 +6,7 @@
             [keechma.next.controllers.entitydb]
             [keechma.next.controllers.dataloader]
 
-            [main.controllers.timeout]))
+            [main.controllers.contrived]))
 
 (def app
   {:keechma.subscriptions/batcher rdom/unstable_batchedUpdates
@@ -29,19 +29,7 @@
       :type :keechma/entitydb
       :keechma.entitydb/schema {}}
 
-
-;;      :signin/credentials
-;;      #:keechma.controller
-;;       {:params (fn [{:keys [signin]}]
-;;                  (let [{:keys [active-states data]} signin]
-;;                    {:credentials data}))
-;;        :deps [:signin]
-;;        :type :auth/credentials
-;;        :_/on-submit (event/to-dispatch :signin :on-submit)}
-
-    :timeout
+    :contrived
     #:keechma.controller
      {:params true}}})
-
-
 

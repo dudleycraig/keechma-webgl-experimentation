@@ -10,6 +10,7 @@
    (make-response-event-name ev false))
   ([ev is-error]
    (let [ev-ns (namespace ev)
+         ;; TODO: add warning state
          suffix (if is-error "error" "response")
          ev-name (str "on-" (name ev) "-" suffix)]
      (if ev-ns

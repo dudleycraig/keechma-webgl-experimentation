@@ -1,4 +1,4 @@
-(ns main.controllers.timeout
+(ns main.controllers.contrived
   (:require ["@fortawesome/free-solid-svg-icons" :refer [faUser]]
 
             [promesa.core :as promesa]
@@ -14,7 +14,7 @@
 
             [main.lib.fsm :refer [handle register]]))
 
-(derive :timeout ::controllers-pipelines/controller)
+(derive :contrived ::controllers-pipelines/controller)
 
 (defn wrand
   "weighted random generator. 
@@ -111,7 +111,7 @@
                        :fsm/on (fn [state-machine {:keys [data]}]
                                  (fsm/update-data state-machine merge {:status "inert" :messages []}))}]]])
 
-(defmethod keechma-controller/prep :timeout [controller]
+(defmethod keechma-controller/prep :contrived [controller]
   (register
    controller
    {::init
@@ -144,13 +144,13 @@
        {:status "inert"})
      :warning)}))
 
-(defmethod keechma-controller/start :timeout [_ _ _]
+(defmethod keechma-controller/start :contrived [_ _ _]
   (fsm/start (fsm/compile state-machine) {:status "inert" :messages []}))
 
-(defmethod keechma-controller/handle :timeout [controller event payload]
+(defmethod keechma-controller/handle :contrived [controller event payload]
   (handle controller event payload))
 
-(defmethod keechma-controller/derive-state :timeout [_ state _]
+(defmethod keechma-controller/derive-state :contrived [_ state _]
   {:active-states (fsm/get-active-states state)
    :data (fsm/get-data state)})
 
