@@ -35,15 +35,23 @@
   returns a promise"
   []
   (promesa/create
-   (fn [resolve reject]
-     (js/setTimeout
-      (fn []
-        (case (wrand [6 3 3])
-          0 (do (js/console.log "success triggered") (resolve {:status "success" :messages [{:status "success" :timestamp (.getTime (js/Date.)) :text "A contrived success message."}]}))
-          1 (do (js/console.warn "warning triggered") (resolve {:status "warning" :messages [{:status "warning" :timestamp (.getTime (js/Date.)) :text "A contrived warning message."}]}))
-          2 (do (js/console.error "error triggered") (reject {:status "error" :messages [{:status "error" :timestamp (.getTime (js/Date.)) :text "A contrived error message."}]}))
-          (do (js/console.error "default triggered") (reject {:status "error" :messages [{:status "error" :timestamp (.getTime (js/Date.)) :text "Failed retrieving a contrived message."}]}))))
-      1500))))
+    (fn [resolve reject]
+      (js/setTimeout
+        (fn []
+          (case (wrand [6 3 3])
+            0 (do 
+                (js/console.log "success triggered") 
+                (resolve {:status "success" :messages [{:status "success" :timestamp (.getTime (js/Date.)) :text "A contrived success message."}]}))
+            1 (do 
+                (js/console.warn "warning triggered") 
+                (resolve {:status "warning" :messages [{:status "warning" :timestamp (.getTime (js/Date.)) :text "A contrived warning message."}]}))
+            2 (do 
+                (js/console.error "error triggered") 
+                (reject {:status "error" :messages [{:status "error" :timestamp (.getTime (js/Date.)) :text "A contrived error message."}]}))
+            (do 
+              (js/console.error "default triggered") 
+              (reject {:status "error" :messages [{:status "error" :timestamp (.getTime (js/Date.)) :text "Failed retrieving a contrived message."}]}))))
+        1500))))
 
 (def state-machine
   [:fsm/root
