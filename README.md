@@ -22,6 +22,7 @@ The example is of button triggering a state cascade, from an "inert" state, tran
               |
     +---------+---------+
  success   warning    error
+    |         |      [reset]
     +---------+---------+
               |
             inert
