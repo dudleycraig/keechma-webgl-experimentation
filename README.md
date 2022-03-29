@@ -14,8 +14,7 @@
 
 This is a quick overview on applying a state machine to a keechma controller.
 
-The example is of button triggering a state cascade, 
-from an "inert" state, transitioning to "active", "success", and finally transitioning back to "inert".
+The example is of button triggering a state cascade, from an "inert" state, transitioning to "active", "success", and finally transitioning back to "inert".
 ```
 inert -> active |-> success -> inert
                 |
@@ -24,28 +23,58 @@ inert -> active |-> success -> inert
                 |-> error -> reset -> inert
 ```
 
-during the "active" state, a contrived promise is created from a simple setTimeout within the pipelines and has a weighted chance of returning either a status of "success", "warning", or "error".  
+During the "active" state, a contrived promise is created from a simple setTimeout within the pipeline and has a weighted chance of returning either a status of "success", "warning", or "error".  
+
+The basic flow of the controller can be sumarised as follows ...
+
 ```
-(defn contrived-async-promise
-  "an asyncronous process meant to mimic an ajax transaction 
-  returns a promise"
-  []
-  (promesa/create
-    (fn [resolve reject]
-      (js/setTimeout
-        (fn []
-          (case (wrand [6 3 3])
-            0 (do 
-                (js/console.log "success triggered") 
-                (resolve {:status "success" :messages [{:status "success" :timestamp (.getTime (js/Date.)) :text "A contrived success message."}]}))
-            1 (do 
-                (js/console.warn "warning triggered") 
-                (resolve {:status "warning" :messages [{:status "warning" :timestamp (.getTime (js/Date.)) :text "A contrived warning message."}]}))
-            2 (do 
-                (js/console.error "error triggered") 
-                (reject {:status "error" :messages [{:status "error" :timestamp (.getTime (js/Date.)) :text "A contrived error message."}]}))
-            (do 
-              (js/console.error "default triggered") 
-              (reject {:status "error" :messages [{:status "error" :timestamp (.getTime (js/Date.)) :text "Failed retrieving a contrived message."}]}))))
-        1500))))
+:inert
+  handle ":init"
+    update state
+    trigger "::init"
+  handle ":on-init-response"
+    transition ":active"
 ```
+```
+:active
+  handle enter
+    trigger "::active" event
+  handle ":on-active-response"
+    transition ":success"
+  handle ":on-active-warning"
+    transition ":warning"
+  handle ":on-active-error"
+    transition ":error"
+```
+```
+:success
+  handle enter
+    update state
+    trigger "::success"
+  handle ":on-success-response"
+    update state
+    transition ":inert"
+```
+```
+:warning
+  handle enter
+    update state
+    trigger "::warning"
+  handle ":on-warning-response"
+    update state
+    transition ":inert"
+```
+```
+:error
+  handle enter
+    update state from exception
+  handle ":reset"
+    update state
+    transition ":inert"
+```
+  
+
+
+
+
+
