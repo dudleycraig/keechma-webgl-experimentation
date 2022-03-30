@@ -6,7 +6,8 @@
             [keechma.next.controllers.entitydb]
             [keechma.next.controllers.dataloader]
 
-            [main.controllers.contrived]))
+            [main.controllers.contrived]
+            [main.controllers.stage]))
 
 (def app
   {:keechma.subscriptions/batcher rdom/unstable_batchedUpdates
@@ -14,26 +15,30 @@
 
    {:router
     #:keechma.controller
-     {:params true
-      :type :keechma/router
-      :keechma/routes [["" {:page "home"}] 
-                       ":page" 
-                       ":page/:subpage"
-                       ["stage" {:page "stage"}]
-                       ["contact" {:page "contact"}]]}
+    {:params true
+     :type :keechma/router
+     :keechma/routes [["" {:page "home"}] 
+                      ":page" 
+                      ":page/:subpage"
+                      ["stage" {:page "stage"}]
+                      ["contact" {:page "contact"}]]}
 
     :dataloader
     #:keechma.controller
-     {:params true
-      :type :keechma/dataloader}
+    {:params true
+     :type :keechma/dataloader}
 
     :entitydb
     #:keechma.controller
-     {:params true
-      :type :keechma/entitydb
-      :keechma.entitydb/schema {}}
+    {:params true
+     :type :keechma/entitydb
+     :keechma.entitydb/schema {}}
 
     :contrived
     #:keechma.controller
-     {:params true}}})
+    {:params true}
+
+    :stage
+    #:keechma.controller 
+    {:params true}}})
 
