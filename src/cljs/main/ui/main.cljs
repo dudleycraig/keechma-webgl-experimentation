@@ -11,24 +11,32 @@
             [keechma.next.helix.lib :refer [defnc]]
             [keechma.next.controllers.pipelines :refer [throw-promise!]]
             [main.ui.components.main-navigation :refer [MainNavigation]]
-            [main.ui.pages.home :refer [Home]]))
+            [main.ui.pages.home :refer [Home]]
+            [main.ui.pages.stage :refer [Stage]]
+            [main.ui.pages.contact :refer [Contact]]))
 
+;; (def nav-items 
+;;   [{:label "Home" :active true :href "home"}
+;;    {:label "Stage" :active false :href "stage"}
+;;    {:label "Contact" :active false :href "contact"}])
 
-(def nav-items 
-  [{:label "Home" :active true :href "#"}
-   {:label "Stage" :active false :href "#"}
-   {:label "Contact" :active false :href "#"}])
+(def nav-items
+  [{:route {:page "home"} :title "Home"}
+   {:route {:page "stage"} :title "Stage"}
+   {:route {:page "contact"} :title "Contact"}])
 
-(defnc Stage [props]
+(defnc Container [props]
   (suspense
     {:fallback (d/div "Loading ...")}
-    (let [{:keys [page]} (use-sub props :router)]
+    (let [{:keys [page subpage] :as router} (use-sub props :router)]
       (<>
         ($ MainNavigation {:nav-items nav-items})
 
         (suspense {:fallback (d/main {:class "container" :role "main"} "Loading ...")}
                   (case page
                     "home" ($ Home)
+                    "stage" ($ Stage)
+                    "contact" ($ Contact)
                     (d/div "404")))
 
         (d/nav {:class "navbar navbar-dark navbar-expand-lg bg-primary fixed-bottom"
@@ -37,7 +45,7 @@
                        :style {:padding "5px"}}
                       "© 2018 Very Big Things"))))))
 
-(def Main (with-keechma Stage))
+(def Main (with-keechma Container))
 
 
 
