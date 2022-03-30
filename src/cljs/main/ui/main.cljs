@@ -2,7 +2,7 @@
   (:require ["react" :as react]
             ["react-dom" :as rdom]
             ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
-            ["@fortawesome/free-solid-svg-icons" :refer [faEnvelope faImages faHome faUser]]
+            ["@fortawesome/free-solid-svg-icons" :refer [faHome faCube faEnvelope]]
             [helix.core :as hx :refer [$ <> suspense]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
@@ -21,9 +21,9 @@
 ;;    {:label "Contact" :active false :href "contact"}])
 
 (def nav-items
-  [{:route {:page "home"} :title "Home"}
-   {:route {:page "stage"} :title "Stage"}
-   {:route {:page "contact"} :title "Contact"}])
+  [{:route {:page "home"} :title "Home" :icon faHome}
+   {:route {:page "stage"} :title "Stage" :icon faCube}
+   {:route {:page "contact"} :title "Contact" :icon faEnvelope}])
 
 (defnc Container [props]
   (suspense

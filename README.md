@@ -4,7 +4,7 @@
 
 ## installation and running
 
-> git clone https://github.com/dudleycraig/experimentation.git functional 
+> git clone https://github.com/dudleycraig/keechma-webgl-experimentation.git functional 
 
 > npm install
 

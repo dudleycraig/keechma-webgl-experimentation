@@ -19,9 +19,7 @@
       :keechma/routes [["" {:page "home"}] 
                        ":page" 
                        ":page/:subpage"
-                       
                        ["stage" {:page "stage"}]
-                       
                        ["contact" {:page "contact"}]]}
 
     :dataloader
