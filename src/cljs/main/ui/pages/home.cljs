@@ -32,10 +32,12 @@
                           :status status
                           :icon faUser
                           :label "contrive status" 
-                          :onClick (fn [event] (dispatch props :contrived :init))})
-          (d/button {:class "btn btn-outline-secondary d-inline-flex flex-row justify-content-center align-items-center ml-2"
+                          :onClick (fn [event] 
+                                     (dispatch props :contrived :init))})
+          (d/button {:class ["btn" "btn-outline-secondary" "d-inline-flex" "flex-row" "justify-content-center" "align-items-center" "ml-2"]
                      :disabled (not= status "error")
-                     :onClick (fn [event] (dispatch props :contrived :reset))}
+                     :onClick (fn [event] 
+                                (dispatch props :contrived :reset))}
             "reset status")))
 
       (d/div {:class "row mb-2"}

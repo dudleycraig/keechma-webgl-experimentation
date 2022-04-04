@@ -15,6 +15,7 @@
               :watch-path "public"
               :http-root "public"
               :http-port 8081}
+   :compiler-options {:output-feature-set :es6} ;; required for helix and react-three/fiber
    ;; :build-hooks [(build/load-env)]
    ;; :build-hooks [(shadow.cljs.build-report/hook)]
    }}}

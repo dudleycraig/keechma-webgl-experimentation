@@ -4,39 +4,39 @@
             [helix.impl.props]
             [applied-science.js-interop :as j]))
 
-(def gl-group "group")
-(def gl-scene "scene")
+(def group "group")
+(def scene "scene")
 
-(def gl-mesh "mesh")
-(def gl-instanced-mesh "instancedMesh")
+(def mesh "mesh")
+(def instanced-mesh "instancedMesh")
 
-(def gl-object-3d "object3D")
-(def gl-points "points")
-(def gl-fog "fog")
+(def object-3d "object3D")
+(def points "points")
+(def fog "fog")
 
-(def gl-box-buffer-geometry "boxBufferGeometry")
-(def gl-buffer-geometry "bufferGeometry")
-(def gl-sphere-geometry "sphereGeometry")
-(def gl-text-geometry "textGeometry")
-(def gl-plane-buffer-geometry "planeBufferGeometry")
-(def gl-shape-buffer-geometry "shapeBufferGeometry")
+(def box-buffer-geometry "boxBufferGeometry")
+(def buffer-geometry "bufferGeometry")
+(def sphere-geometry "sphereGeometry")
+(def text-geometry "textGeometry")
+(def plane-buffer-geometry "planeBufferGeometry")
+(def shape-buffer-geometry "shapeBufferGeometry")
 
-(def gl-buffer-attribute "bufferAttribute")
+(def buffer-attribute "bufferAttribute")
 
-(def gl-color "color")
+(def color "color")
 
-(def gl-mesh-basic-material "meshBasicMaterial")
-(def gl-mesh-standard-material "meshStandardMaterial")
-(def gl-mesh-normal-material "meshNormalMaterial")
-(def gl-mesh-phong-material "meshPhongMaterial")
-(def gl-mesh-lambert-material "meshLambertMaterial")
-(def gl-shadow-material "shadowMaterial")
-(def gl-points-material "pointsMaterial")
+(def mesh-basic-material "meshBasicMaterial")
+(def mesh-standard-material "meshStandardMaterial")
+(def mesh-normal-material "meshNormalMaterial")
+(def mesh-phong-material "meshPhongMaterial")
+(def mesh-lambert-material "meshLambertMaterial")
+(def shadow-material "shadowMaterial")
+(def points-material "pointsMaterial")
 
-(def gl-ambient-light "ambientLight")
-(def gl-point-light "pointLight")
-(def gl-spot-light "spotLight")
-(def gl-hemisphere-light "hemisphereLight")
+(def ambient-light "ambientLight")
+(def point-light "pointLight")
+(def spot-light "spotLight")
+(def hemisphere-light "hemisphereLight")
 
 ; -- wrappers ---------------------------------------------------------------------------------------------------------------
 
@@ -84,7 +84,7 @@
   ([points] (catmull-rom-curve3-class. points)))
 
 (defn deg-to-rad [n]
-  (j/call-in three [.-Math .-degToRad] n))
+  (j/call-in THREE [.-Math .-degToRad] n))
 
 (def pcf-soft-shadow-map THREE/PCFSoftShadowMap)
 
@@ -95,12 +95,12 @@
 (defn play-animation-action! [action]
   (.play action))
 
-(defn get-clip-animation-action
-  ([mixer clip] (.clipAction mixer clip))
-  ([mixer clip root] (.clipAction mixer clip root)))
+;; (defn get-clip-animation-action
+;;   ([mixer clip] (.clipAction mixer clip))
+;;   ([mixer clip root] (.clipAction mixer clip root)))
 
-(defn compute-bounding-box! [geom]
-  (.computeBoundingBox geom))
+;; (defn compute-bounding-box! [geom]
+;;   (.computeBoundingBox geom))
 
 (defn get-geometry [o]
   (.-geometry o))
@@ -123,5 +123,5 @@
 (defn vector3-clone [v]
   (.clone v))
 
-(defn camera-look-at! [camera x y z]
-  (.lookAt camera x y z))
+;; (defn camera-look-at! [camera x y z]
+;;   (.lookAt camera x y z))
