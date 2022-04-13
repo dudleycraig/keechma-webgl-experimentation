@@ -1,15 +1,21 @@
 (ns main.ui.components.gl
-  (:require ["react" :refer [Suspense useEffect useRef] :as react]
+  (:require ["core-js/stable"]
+            ["regenerator-runtime/runtime"]
+
+            ["react" :refer [Suspense] :as react]
             ["react-dom" :as rdom]
-            ["three" :as THREE]
+            ;; ["@react-three/cannon" :refer [Physics usePlane useBox useCylinder useRaycastVehicle]]
             ["@react-three/fiber" :refer [Canvas useFrame useThree extend] :as gdom]
-            ;; ["@react-three/drei" :refer [OrbitControls useGLTF]]
-            ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
-            ["@fortawesome/free-solid-svg-icons" :refer [faHome faUser faShare faSpinner faExclamation faCheck]]
+            ["@react-three/drei" :refer [OrbitControls]]
+            ;; ["three-stdlib" :refer [OrbitControls]]
+            ["three" :as THREE]
+
+            [goog.object :as gobj]
 
             [helix.core :as hx :refer [$ suspense]]
-            [helix.dom :as hdom]
+            ;; [helix.dom :as hdom]
             [helix.hooks :as hooks]
+            ;; [cljs-bean.core :as bean]
 
             [keechma.next.core :as keechma]
             [keechma.next.helix.core :refer [with-keechma use-sub use-meta-sub dispatch KeechmaRoot]]
@@ -17,27 +23,27 @@
             [keechma.next.helix.lib :refer [defnc]]
             ))
 
-;; (defnc CameraControls []
-;;   (let [canvas (useThree)
-;;         camera (. canvas -camera)
-;;         domElement (.. canvas -gl -domElement)
-;;         cameraref (useRef)])
-;;   (useFrame #(if 
-;;                (. cameraref -current) 
-;;                (.. cameraref -current update)))
-;;   (set! ^js (.. camera -rotation -x) (.. THREE -MathUtils (degToRad 180)))
-;;   ($ OrbitControls 
-;;      {:ref cameraref 
-;;       :args [camera, domElement] 
-;;       :autoRotate false 
-;;       :enableZoom true}))
+(defnc CameraControls []
+  (let [canvas (useThree)
+        camera (. canvas -camera)
+        domElement (.. canvas -gl -domElement)
+        cameraref (hooks/use-ref nil)]
+    (useFrame #(if 
+                 (. cameraref -current) 
+                 (.. cameraref -current update)))
+    (set! ^js (.. camera -rotation -x) (.. THREE -MathUtils (degToRad 180)))
+    ($ OrbitControls 
+       {:ref cameraref 
+        :args [camera, domElement] 
+        :autoRotate false 
+        :enableZoom true})))
 
 (defnc Spinner []
-  (let [groupref (useRef)
+  (let [groupref (hooks/use-ref nil)
         radius 16
         divisions 9
         radians (. (. THREE -MathUtils) degToRad (/ 360 8))]
-    (useFrame #(if (. groupref -current) (set! ^js (.. groupref -current -rotation -z) (+ (.. groupref -current -rotation -z) 0.061))))
+    (useFrame (fn [] (if (. groupref -current) (set! ^js (.. groupref -current -rotation -z) (+ (.. groupref -current -rotation -z) 0.061)))))
     ($ :group {:ref groupref}
       (map (fn [index]
              (let [x (* radius (. js/Math cos (* radians index)))
@@ -69,13 +75,13 @@
 (defnc Scene []
   (let [canvas (useThree)
         camera (. canvas -camera)
-        torchref (useRef)
-        groupref (useRef)]
+        torchref (hooks/use-ref nil)
+        groupref (hooks/use-ref nil)]
     (useFrame #(if (. torchref -current)
                  (do (set! ^js (.. torchref -current -position -x) (.. camera -position -x))
                      (set! ^js (.. torchref -current -position -y) (.. camera -position -y))
                      (set! ^js (.. torchref -current -position -z) (.. camera -position -z)))))
-    [;; ($ CameraControls)
+    [($ CameraControls)
      ($ :spotLight
        {:key "camera-spotlight"
         :position #js [0 400 0]
@@ -100,11 +106,10 @@
        :onCreated (fn [scene camera] nil)
        :camera {:fov 30 :aspect 0.2 :near 1 :far 50000000 :position #js [40000 0 0] :zoom 2}
        :style {:position "absolute" :width "100%" :height "100%"
-               :z-index 20
-               :border-style "solid" :border-width "1px" :border-color "#000000" :border-radius "5px"
-               :background "red"}
+               :z-index 20}
        :concurrent true
        :pixelRatio (.-devicePixelRatio js/window)}
-      ($ Scene))))
+      ($ Scene))
+    ))
 
 (def GL (with-keechma Container))

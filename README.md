@@ -10,6 +10,41 @@
 
 > npm run frontend
 
+At this point you'll should receive a compile error something along the lines of ...
+```
+[dev] Closure compilation failed with 2 errors
+[dev] --- node_modules/three-stdlib/helpers/PositionalAudioHelper.js:18
+[dev] cannot access this before calling super()
+[dev] --- node_modules/three-stdlib/helpers/RectAreaLightHelper.js:17
+[dev] cannot access this before calling super()
+```
+As of writing this, it's a es6 compilation bug regarding pmndrs/three-stdlib
+Currently the files at fault can be found at 
+node_modules/three-stdlib/helpers/LightProbeHelper.js
+node_modules/three-stdlib/helpers/PositionalAudioHelper.js
+node_modules/three-stdlib/helpers/RectAreaLightHelper.js
+
+To resolve the issue, 
+* edit similar class definitions to the following  
+```
+class LightProbeHelper extends Mesh {
+  constructor(lightProbe, size) {
+    this.lightProbe = lightProbe;
+    this.size = size;
+    ...
+```
+* removing destructured arguments and replacing with an umbrella props argument.
+* add "super(props)" as first line of constructor
+* and either destructure props as per removed arguments or access arguments directly from props object as follows 
+```
+class LightProbeHelper extends Mesh {
+  constructor(props) {
+    super(props);
+    this.lightProbe = props.lightProbe;
+    this.size = props.size;
+    ...
+```
+
 ## fsm (finite state machine) tutorial 
 
 This is a quick overview on applying a state machine to a keechma controller.

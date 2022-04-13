@@ -1,9 +1,13 @@
 (ns main.ui.pages.stage
-  (:require ["react" :refer [Suspense useEffect useRef] :as react]
+  (:require ["core-js/stable"]
+            ["regenerator-runtime/runtime"]
+
+            ["react" :refer [Suspense useEffect useRef] :as react]
             ["react-dom" :as rdom]
             ["three" :as THREE]
-            ["@react-three/fiber" :refer [Canvas useFrame useThree extend] :as gdom]
+            ;; ["@react-three/cannon" :refer [Physics usePlane useBox useCylinder useRaycastVehicle]]
             ;; ["@react-three/drei" :refer [OrbitControls useGLTF]]
+            ;; ["@react-three/fiber" :refer [Canvas useFrame useThree extend] :as gdom]
             ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
             ["@fortawesome/free-solid-svg-icons" :refer [faHome faUser faShare faSpinner faExclamation faCheck]]
 
@@ -116,7 +120,8 @@
       (hdom/div
         {:class "row mb-2"}
         (hdom/div
-          {:class "col" :style {:width "1000px" :height "600px"}}
+          {:class "col" 
+           :style {:width "1000px" :height "600px" :background-color "#3a3f44" :border-style "solid" :border-color "#17191b" :border-width "1px" :border-radius "5px"}}
           ($ GL))))))
 
 (def Stage (with-keechma Container))

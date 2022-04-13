@@ -4,18 +4,27 @@
  :builds 
  {:app 
   {:target :browser
+   :js-options {:entry-keys ["module" "browser" "main"]
+                ;; :anon-fn-naming-policy :unmapped
+                ;; :resolve {"react" {:target :global
+                ;;                    :global "React"}}
+                ;; :js-provider :external
+                ;; :external-index "target/index.js"
+                } 
+   :module-hash-names true
+   ;; :compiler-options {:infer-externs :auto
+   ;;                    :output-feature-set :es6} ;; required for helix and react-three/fiber
    :output-dir "public/js"
    :asset-path "/js"
-   :js-options {:entry-keys ["module" "browser" "main"]} 
-   :module-hash-names true
-   :modules {:package {:init-fn main.core/init}}
+   :modules {:package {:init-fn main.core/init
+                       :entries [main.core]}}
    :devtools {:before-load main.core/before-load
               :after-load main.core/after-load
               :watch-dir "public"
               :watch-path "public"
               :http-root "public"
               :http-port 8081}
-   :compiler-options {:output-feature-set :es6} ;; required for helix and react-three/fiber
    ;; :build-hooks [(build/load-env)]
    ;; :build-hooks [(shadow.cljs.build-report/hook)]
+   ;; :dev-http {8081 "/public"}
    }}}

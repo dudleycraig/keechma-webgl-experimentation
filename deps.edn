@@ -1,29 +1,26 @@
-{:paths 
- ["resources"]
+{:paths ["resources"]
 
- :deps 
- {org.clojure/clojure {:mvn/version "1.10.3"}
-  org.clojure/core.async {:mvn/version "0.7.559"}}
+ :description "experimentation of webgl within keechma"
 
- :aliases
- {:frontend 
-  {:extra-paths 
-   ["src/cljs" "src/cljc"]
-   :extra-deps 
-   {org.clojure/clojurescript {:mvn/version "1.10.891"}
-    keechma/next {:git/url "https://github.com/keechma/keechma-next.git" :sha "a971f125a43941337f45fdc8a2af995484195ed0"}
-    keechma.next/toolbox {:git/url "https://github.com/keechma/keechma-next-toolbox.git" :sha "3169c82226dd87d890327d1d851af0887f04069f"}
-    keechma/pipelines {:mvn/version "0.1.1"}
-    keechma/forms {:mvn/version "0.1.7"}
-    com.verybigthings/state-machete {:mvn/version "0.0.1"}
-    binaryage/oops {:mvn/version "0.7.1"}
-    appliedscience/js-interop {:mvn/version "0.1.22"}
-    cljs-ajax/cljs-ajax {:mvn/version "0.8.0"}
-    cljs-bean/cljs-bean {:mvn/version "1.5.0"}
-    funcool/promesa {:mvn/version "5.1.0"}
-    lilactown/helix {:mvn/version "0.1.4"}
-    metosin/malli {:mvn/version "0.6.2"}
-    hodgepodge/hodgepodge {:mvn/version "0.1.3"}}}
+ :deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        org.clojure/core.async {:mvn/version "0.7.559"}}
+
+ :aliases {:frontend
+           {:extra-paths ["src/cljs" "src/cljc" "public"]
+            :extra-deps {org.clojure/clojurescript {:mvn/version "1.10.891"}
+                         keechma/next {:git/url "https://github.com/keechma/keechma-next.git" :sha "a971f125a43941337f45fdc8a2af995484195ed0"}
+                         keechma.next/toolbox {:git/url "https://github.com/keechma/keechma-next-toolbox.git" :sha "3169c82226dd87d890327d1d851af0887f04069f"}
+                         keechma/pipelines {:mvn/version "0.1.1"}
+                         keechma/forms {:mvn/version "0.1.7"}
+                         com.verybigthings/state-machete {:mvn/version "0.0.1"}
+                         binaryage/oops {:mvn/version "0.7.1"}
+                         appliedscience/js-interop {:mvn/version "0.1.22"}
+                         cljs-ajax/cljs-ajax {:mvn/version "0.8.0"}
+                         cljs-bean/cljs-bean {:mvn/version "1.5.0"}
+                         funcool/promesa {:mvn/version "5.1.0"}
+                         lilactown/helix {:mvn/version "0.1.4"}
+                         metosin/malli {:mvn/version "0.6.2"}
+                         hodgepodge/hodgepodge {:mvn/version "0.1.3"}}}
 
   :backend
   {:extra-paths 
@@ -41,9 +38,10 @@
   {:extra-paths 
    ["src/dev"]
    :extra-deps
-   {cider/cider-nrepl {:mvn/version "0.26.0"}
+   {binaryage/devtools {:mvn/version "0.9.7"}
+    cider/cider-nrepl {:mvn/version "0.26.0"}
     com.github.liquidz/iced-nrepl {:mvn/version "1.2.7"}
-    binaryage/devtools {:mvn/version "0.9.7"}
+    refactor-nrepl/refactor-nrepl {:mvn/version "2.5.1"}
     thheller/shadow-cljs {:mvn/version "2.16.4"}}}
 
   :test 

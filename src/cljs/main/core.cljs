@@ -1,5 +1,8 @@
 (ns main.core
-  (:require ["react" :as react]
+  (:require ["core-js/stable"]
+            ["regenerator-runtime/runtime"]
+    
+            ["react" :as react]
             ["react-dom" :as rdom]
             ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
             ["@fortawesome/free-solid-svg-icons" :refer [faEnvelope faImages faHome faUser]]

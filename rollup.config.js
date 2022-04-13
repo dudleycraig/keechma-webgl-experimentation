@@ -13,7 +13,7 @@ const generateStylesCljs = (_, json) => {
 
 export default [
   {
-    input: "src/styles/core.scss",
+    input: "src/cljs/style/core.scss",
     output: {
       file: "public/css/core.css",
       format: "es"
