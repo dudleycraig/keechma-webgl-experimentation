@@ -11,6 +11,7 @@
             [keechma.next.helix.lib :refer [defnc]]
             [keechma.next.controllers.pipelines :refer [throw-promise!]]
             [main.ui.components.main-navigation :refer [MainNavigation]]
+            [main.ui.components.main-footer :refer [MainFooter]]
             [main.ui.pages.home :refer [Home]]
             [main.ui.pages.stage :refer [Stage]]
             [main.ui.pages.contact :refer [Contact]]))
@@ -38,12 +39,7 @@
                     "stage" ($ Stage)
                     "contact" ($ Contact)
                     (d/div "404")))
-
-        (d/nav {:class "navbar navbar-dark navbar-expand-lg bg-primary fixed-bottom"
-                :style {:border "none"}}
-               (d/div {:class "navbar-navbar d-none d-md-inline"
-                       :style {:padding "5px"}}
-                      "© 2018 Very Big Things"))))))
+        ($ MainFooter)))))
 
 (def Main (with-keechma Container))
 

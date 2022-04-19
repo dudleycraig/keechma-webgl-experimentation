@@ -20,9 +20,11 @@ At this point you'll should receive a compile error something along the lines of
 ```
 As of writing this, it's a es6 compilation bug regarding pmndrs/three-stdlib
 Currently the files at fault can be found at 
+```
 node_modules/three-stdlib/helpers/LightProbeHelper.js
 node_modules/three-stdlib/helpers/PositionalAudioHelper.js
 node_modules/three-stdlib/helpers/RectAreaLightHelper.js
+```
 
 To resolve the issue, 
 * edit similar class definitions to the following  
@@ -45,7 +47,7 @@ class LightProbeHelper extends Mesh {
     ...
 ```
 
-## fsm (finite state machine) tutorial 
+## fsm (finite state machine) helper 
 
 This is a quick overview on applying a state machine to a keechma controller.
 

@@ -23,10 +23,10 @@
                       ["stage" {:page "stage"}]
                       ["contact" {:page "contact"}]]}
 
-    :dataloader
-    #:keechma.controller
-    {:params true
-     :type :keechma/dataloader}
+    ;; :dataloader
+    ;; #:keechma.controller
+    ;; {:params true
+    ;;  :type :keechma/dataloader}
 
     :entitydb
     #:keechma.controller
@@ -36,11 +36,10 @@
 
     :contrived
     #:keechma.controller
-    {:params true}
+     {:params {:status "inert" :messages []}}
 
     :stage
     #:keechma.controller 
-    {:params true}
-
+     {:params true}
     }})
 
