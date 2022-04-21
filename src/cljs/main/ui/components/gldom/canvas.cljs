@@ -20,17 +20,24 @@
             
             [main.ui.components.gldom.scene :refer [Scene]]))
 
-(def initial-camera-position #js[0 0 -50])
+(def initial-camera-position #js[0 0 100])
 
 (defnc Container [props]
   (let [{:keys [active-states data]} (use-sub props :stage)]
     ($ Canvas
-       {:id "gldom"
-        :gl {:alpha true}
-        ;; :onCreated (fn [canvas] (set! ^js (. (. canvas -camera) -position) initial-camera-position))
-        :camera {:fov 30 :aspect 0.2 :near 1 :far 50000000 :position initial-camera-position :zoom 2}
-        :concurrent true
-        :pixelRatio (. js/window -devicePixelRatio)}
-       ($ Scene {:initial-camera-position initial-camera-position}))))
+      {:id "gldom"
+       :frameloop "always"
+       :gl {:alpha true}
+       :onCreated
+       (fn [state]
+         (do
+           ;; (.. state -gl (setPixelRatio 1.5))
+           ;; (.. state -gl (setClearColor 0x17191b 0.2))
+         ))
+       ;; :pixelRatio (. js/window -devicePixelRatio)
+       ;; :dpr (. js/Math (min (. js/window -devicePixelRatio) 2))
+       ;; :dpr #js[1 2] 
+       :concurrent true}
+      ($ Scene {:initial-camera-position initial-camera-position}))))
 
 (def Canvas3D (with-keechma Container))

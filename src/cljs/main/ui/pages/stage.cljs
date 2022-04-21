@@ -28,13 +28,27 @@
       (hdom/div
         {:class "row mb-2"}
         (hdom/div {:class "col"}
-                  "stage"))
+          "stage"))
 
       (hdom/div
         {:class "row mb-2"}
         (hdom/div
-          {:class "col" 
-           :style {:position "relative" :width "800px" :height "400px" :background-color "#3a3f44" :border-style "solid" :border-color "#17191b" :border-width "1px" :border-radius "5px"}}
-          ($ Canvas3D))))))
+          {:class "col"}
+          (hdom/div
+            {:class ""
+             :style
+             {:position "relative"
+              :margin "0 auto"
+              :left 0
+              :top 0
+              :z-index 20
+              :width "600px"
+              :height "600px"
+              :background-color "#3a3f44"
+              :border-style "solid"
+              :border-color "#17191b"
+              :border-width "1px"
+              :border-radius "5px"}}
+            ($ Canvas3D)))))))
 
 (def Stage (with-keechma Container))
