@@ -36,10 +36,14 @@
 
     :contrived
     #:keechma.controller
-     {:params {:status "inert" :messages []}}
+    {:params {:status "inert" :messages []}}
 
     :stage
     #:keechma.controller 
-     {:params true}
-    }})
+    {:params 
+     {:status "inert"
+      :messages []
+      :dimensions 
+      {:width 600 
+       :height 600}}}}})
 

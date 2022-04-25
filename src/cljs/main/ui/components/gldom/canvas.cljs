@@ -20,10 +20,9 @@
             
             [main.ui.components.gldom.scene :refer [Scene]]))
 
-(def initial-camera-position #js[0 0 100])
-
 (defnc Container [props]
-  (let [{:keys [active-states data]} (use-sub props :stage)]
+  (let [{:keys [active-states data]} (use-sub props :stage)
+        initial-camera-position (get-in data [:scene :camera :position])]
     ($ Canvas
       {:id "gldom"
        :frameloop "always"

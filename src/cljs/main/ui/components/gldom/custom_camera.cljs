@@ -18,10 +18,10 @@
   (let [cameraref (hooks/use-ref nil)
         set-state (useThree (fn [state] (. state -set)))]
     (hooks/use-effect
-     :once
-     (if
-      (. cameraref -current)
-       (set-state #js{:camera (. cameraref -current)})))
+      :once
+      (if
+        (. cameraref -current)
+        (set-state #js{:camera (. cameraref -current)})))
     ($ :perspectiveCamera 
        {:ref cameraref 
         :position position 

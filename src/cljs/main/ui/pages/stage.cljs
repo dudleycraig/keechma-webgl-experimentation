@@ -20,7 +20,8 @@
             [main.ui.components.gldom.canvas :refer [Canvas3D]]))
 
 (defnc Container [props]
-  (let [{:keys [active-states data]} (use-sub props :stage)]
+  (let [{:keys [active-states data]} (use-sub props :stage)
+        {:keys [width height]} (get-in data [:canvas :dimensions])]
 
     (hdom/div
       {:class "container" :style {:margin-top "60px"} :id "stage"}
@@ -35,15 +36,15 @@
         (hdom/div
           {:class "col"}
           (hdom/div
-            {:class ""
+            {:class "canvas-container"
              :style
              {:position "relative"
               :margin "0 auto"
               :left 0
               :top 0
               :z-index 20
-              :width "600px"
-              :height "600px"
+              :width (str width "px") 
+              :height (str height "px")
               :background-color "#3a3f44"
               :border-style "solid"
               :border-color "#17191b"
