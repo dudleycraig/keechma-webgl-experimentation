@@ -36,3 +36,12 @@
            (d/span {:class "text pl-2"} text)))
        messages))))
 
+
+
+
+
+
+
+
+
+
