@@ -9,26 +9,24 @@
             [keechma.next.core :as keechma]
             [keechma.next.helix.core :refer [with-keechma use-sub use-meta-sub KeechmaRoot]]
             [keechma.next.helix.lib :refer [defnc]]
+            [keechma.next.helix.classified :refer [defclassified]]
             [keechma.next.controllers.pipelines :refer [throw-promise!]]
-            [keechma.next.controllers.router :as router]))
+            [keechma.next.controllers.router :as router]
+            [main.ui.components.styled-components :as styled]))
 
-(defnc NavBar [{:keys [nav-items] :as props}]
+(defnc Component [{:keys [nav-items] :as props}]
   (let [current-page (:page (use-sub props :router))]
-    (d/nav {:class "main-navigation navbar navbar-expand-md navbar-dark bg-primary display-flex justify-content-center fixed-top"}
-           (d/a {:class "navbar-brand" :href (router/get-url props :router {:page "home"})} "Experimentation")
-           (d/ul {:class "navbar-nav mr-auto flex-row"}
+    ($ styled/NavBar 
+           ($ styled/NavBarBrand {:className "px-3" :href (router/get-url props :router {:page "home"})} "Experimentation")
+           ($ styled/NavBarNav
                  (into
                    []
                    (map-indexed
                      (fn [index {:keys [route title icon] :as link}]
-                       (d/li {:key (str "nav-item-" index) :class "nav-item"}
-                             (d/a {:class ["nav-link" (when (= current-page (:page route)) "active")] 
-                                   :href (router/get-url props :router route)}
+                       ($ styled/NavBarItem {:key (str "nav-item-" index)}
+                             ($ styled/NavBarLink {:className [(when (= current-page (:page route)) "active")] :href (router/get-url props :router route)}
                                   ($ FontAwesomeIcon {:icon icon :size "1x" :style {:min-width "16px"}})
                                   (d/span {:class ["ml-1" "d-md-inline" "d-none"]} title))))
                      nav-items))))))
 
-(def MainNavigation (with-keechma NavBar))
-
-
-
+(def MainNavigation (with-keechma Component))
