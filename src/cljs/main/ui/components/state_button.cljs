@@ -1,54 +1,25 @@
 (ns main.ui.components.state-button
   (:require ["react" :as react]
             ["react-dom" :as rdom]
-            ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
-            ["@fortawesome/free-solid-svg-icons" :refer [faHome faUser faShare faSpinner faExclamation faCheck]]
-
+            ["@heroicons/react/outline" :refer [ShareIcon]]
             [helix.core :as hx :refer [$ <> suspense]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
-            
             [keechma.next.helix.core :refer [with-keechma use-sub use-meta-sub dispatch KeechmaRoot]]
-            [keechma.next.helix.lib :refer [defnc]]))
+            [keechma.next.helix.lib :refer [defnc]]
+            [main.utilities :refer [status-to-color status-to-icon merge-classes]]
+            [main.ui.components.button :refer [Button]]))
 
 (defnc StateButton
-  [{:keys [status onClick icon label class]
-    :or {status "inert" onClick (fn [] nil) icon faShare label "submit" class ""}
+  [{:keys [status onClick icon label class type]
+    :or {status "inert" 
+         icon ShareIcon 
+         onClick (fn [event] nil) 
+         type "button"
+         label "Submit" 
+         class []}
     :as props}]
 
-  (def status-to-icon-attributes
-    {:inert {}
-     :warning {:icon faExclamation}
-     :active {:icon faSpinner :spin true}
-     :success {:icon faCheck}
-     :error {:icon faExclamation}})
-
-  (def status-to-variant
-    {:inert "secondary"
-     :warning "warning"
-     :active "primary"
-     :success "success"
-     :error "danger"})
-
-  (d/button
-    {:class (str "status-button " class " btn btn-outline-" (status-to-variant (keyword status)) " d-inline-flex flex-row justify-content-center align-items-center m-0")
-     :type "button"
-     :disabled (contains? '("active" "success") status)
-     :onClick onClick}
-
-    ($ FontAwesomeIcon {& (merge {:icon icon :size "1x" :spin false} (status-to-icon-attributes (keyword status)))})
-
-    (d/span {:class "ml-2"} label)))
-
-
-
-
-
-
-
-
-
-
-
-
-
+  ($ Button {:class (merge-classes (status-to-color (keyword status)) class) :type type :disabled (some #(= status %) ["active" "success" "error"]) :onClick onClick}
+     ($ (get status-to-icon (keyword status) icon) {:className "self-center w-4 h-4 shrink-0"})
+     (d/span {:class "ml-2"} label)))

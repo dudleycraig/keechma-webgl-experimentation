@@ -1,8 +1,7 @@
 (ns main.ui.pages.home
   (:require ["react" :as react]
             ["react-dom" :as rdom]
-            ["@fortawesome/react-fontawesome" :refer [FontAwesomeIcon]]
-            ["@fortawesome/free-solid-svg-icons" :refer [faHome faUser faShare faSpinner faExclamation faCheck]]
+            ["@heroicons/react/outline" :refer [HomeIcon CubeIcon MailIcon UserIcon ShareIcon ExclamationIcon CheckCircleIcon]]
 
             [helix.core :as hx :refer [$ <> suspense]]
             [helix.dom :as d]
@@ -15,47 +14,24 @@
 
             [main.ui.components.styled-components :as styled]
             [main.ui.components.messages :refer [Messages]]
-            [main.ui.components.state-button :refer [StateButton]]))
+            [main.ui.components.state-button :refer [StateButton]]
+            [main.ui.components.button :refer [Button]]))
 
 (defnc Container [props]
   (let [{:keys [active-states data]} (use-sub props :contrived)
         {:keys [status messages]} data]
 
-    (d/div {:class "container" :style {:margin-top "60px"} :id "home"}
-
-      (d/div {:class "row mb-2"}
-        (d/div {:class "col"}
-          "home"))
-
-      (d/div {:class "row mb-2"}
-        (d/div {:class "col"}
-          ($ StateButton {:class "contrived"
-                          :status status
-                          :icon faUser
-                          :label "contrive status" 
-                          :onClick (fn [event] 
-                                     (dispatch props :contrived :init))})
-          (d/button {:class ["btn" "btn-outline-secondary" "d-inline-flex" "flex-row" "justify-content-center" "align-items-center" "ml-2"]
-                     :disabled (not= status "error")
-                     :onClick (fn [event] 
-                                (dispatch props :contrived :reset))}
-            "reset status")))
-
-      (d/div {:class "row mb-2"}
-        (d/div {:class "col"}
-          ($ Messages {:messages (let [now (.getTime (js/Date.))] messages)}))))))
+    (d/section {:class "flex flex-col items-center w-3/4 h-64 bg-white rounded-lg m-3 p-3"}
+               (d/div {:class "flex flex-nowrap space-x-4"}
+                      ($ StateButton {:class "contrived"
+                                      :status status
+                                      :icon UserIcon
+                                      :label "contrive status" 
+                                      :onClick (fn [event] (dispatch props :contrived :init))})
+                      ($ Button {:disabled (not= status "error")
+                                 :onClick (fn [event] (dispatch props :contrived :reset))}
+                         "reset status"))
+               (d/div {:class "flex flex-nowrap space-x-4"}
+                      ($ Messages {:messages (let [now (.getTime (js/Date.))] messages)})))))
 
 (def Home (with-keechma Container))
-
-
-
-
-
-
-
-
-
-
-
-
-
