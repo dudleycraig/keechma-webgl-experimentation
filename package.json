@@ -4,7 +4,7 @@
   "description": "keechma-next experimentation",
   "private": true,
   "scripts": {
-    "shadow:watch": "cross-env NODE_ENV=develop shadow-cljs watch app -A:frontend:dev:vim",
+    "shadow:watch": "cross-env NODE_ENV=develop shadow-cljs watch app -A:frontend:vim",
     "shadow:release": "shadow-cljs release app",
     "sass:watch": "sass --watch --update --style=expanded ./src/cljs/style/core.scss:./public/css/core.css",
     "sass:dev": "concurrently 'npm:shadow:watch' 'npm:sass:watch'",

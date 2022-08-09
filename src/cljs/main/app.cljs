@@ -15,35 +15,27 @@
 
    {:router
     #:keechma.controller
-    {:params true
-     :type :keechma/router
-     :keechma/routes [["" {:page "home"}] 
-                      ":page" 
-                      ":page/:subpage"
-                      ["stage" {:page "stage"}]
-                      ["contact" {:page "contact"}]]}
+     {:params true
+      :type :keechma/router
+      :keechma/routes [["" {:page "home"}] ":page" ":page/:subpage"]}
 
     ;; :dataloader
     ;; #:keechma.controller
     ;; {:params true
     ;;  :type :keechma/dataloader}
 
-    :entitydb
-    #:keechma.controller
-    {:params true
-     :type :keechma/entitydb
-     :keechma.entitydb/schema {}}
+    ;; :entitydb
+    ;; #:keechma.controller
+    ;;  {:params true
+    ;;   :type :keechma/entitydb
+    ;;   :keechma.entitydb/schema {}}
 
     :contrived
     #:keechma.controller
-    {:params {:status "inert" :messages []}}
+     {:params {:status "inert" :messages []}}
 
     :stage
-    #:keechma.controller 
-    {:params 
-     {:status "inert"
-      :messages []
-      :dimensions 
-      {:width 600 
-       :height 600}}}}})
+    #:keechma.controller
+     {:params {:status "inert" :messages [] :container (. js/document getElementById "canvas")} 
+      :deps [:router]}}})
 

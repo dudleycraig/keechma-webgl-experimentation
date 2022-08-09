@@ -2,6 +2,7 @@
   (:require ["react" :as react]
             ["react-dom" :as rdom]
             ["@heroicons/react/outline" :refer [HomeIcon CubeIcon MailIcon]]
+            [clojure.core.match :refer-macros [match]]
             [helix.core :as hx :refer [$ <> suspense]]
             [helix.dom :as d]
             [helix.hooks :as hooks]
@@ -24,16 +25,16 @@
 (defnc Container [props]
   (suspense
     {:fallback (d/div "Loading ...")}
-    (let [{:keys [page subpage] :as router} (use-sub props :router)]
-      (<>
-        ($ MainHeader {:nav-items nav-items})
-        (d/main {:class "w-screen h-screen flex flex-grow justify-center items-top" :role "main"}
-          (suspense {:fallback (d/div "Loading ...")}
-                    (case page
-                      "home" ($ HomePage)
-                      "stage" ($ StagePage)
-                      "contact" ($ ContactPage)
-                      (d/div "404"))))
-        ($ MainFooter)))))
+    (let [{:keys [page] :as router} (use-sub props :router)]
+      [
+       ($ MainHeader {:key "main-header" :nav-items nav-items })
+       (d/main {:key "main-content" :class "w-screen h-screen flex flex-grow justify-center items-top" :role "main" }
+               (suspense {:fallback (d/div "Loading ...")}
+                         (match [page]
+                                ["home"] ($ HomePage)
+                                ["stage"] ($ StagePage)
+                                ["contact"] ($ ContactPage)
+                                :else (d/section "404"))))
+       ($ MainFooter {:key "main-footer"})])))
 
 (def Main (with-keechma Container))

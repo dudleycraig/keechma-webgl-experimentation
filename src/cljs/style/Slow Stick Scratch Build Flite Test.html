@@ -1,0 +1,1464 @@
+<!DOCTYPE html>
+<html lang="en"><script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/all_002.js" async="" crossorigin="anonymous"></script><script type="text/javascript" async="" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/recaptcha__en.js" crossorigin="anonymous" integrity="sha384-iwP2R5t7n0rkDwPNzs/zcXrXzVBb2b29JqfU5BhM+E4+DkZfuORYh+OvxZqtrDOR"></script><script id="facebook-jssdk" async="" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/all.js"></script><script type="text/javascript" async="" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/dc.js"></script><script>
+(() => {
+/**
+ * This script injected by the installed three.js developer
+ * tools extension.
+ * https://github.com/threejs/three-devtools
+ */
+
+const $devtoolsReady = Symbol('devtoolsReady');
+const $backlog = Symbol('backlog');
+
+// The __THREE_DEVTOOLS__ target is small and light-weight, and collects
+// events triggered until the devtools panel is ready, which is when
+// the events are flushed.
+const target = new class ThreeDevToolsTarget extends EventTarget {
+  constructor() {
+    super();
+    this[$devtoolsReady] = false;
+    this[$backlog] = [];
+    this.addEventListener('devtools-ready', e => {
+      this[$devtoolsReady] = true;
+      for (let event of this[$backlog]) {
+        this.dispatchEvent(event);
+      }
+    }, { once: true });
+  }
+
+  dispatchEvent(event) {
+    if (this[$devtoolsReady] || event.type === 'devtools-ready') {
+      super.dispatchEvent(event);
+    } else {
+      this[$backlog].push(event);
+    }
+  }
+}
+
+Object.defineProperty(window, '__THREE_DEVTOOLS__', {
+  value: target,
+});
+})();
+</script><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <title>Slow Stick Scratch Build | Flite Test</title>
+    <meta name="description" content="I wanted to build a slow stick which would not be too slow and also not too fast. I managed to pull if off. Here is how.">
+    <link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/css.css">
+    <link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/jasny-bootstrap.min.css">
+    <link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/magnific-popup.css">
+    
+	<link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/articleRead.css">
+    <link rel="stylesheet" href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/flitetest.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.flitetest.com/alexa/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="https://www.flitetest.com/alexa/favicons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://www.flitetest.com/alexa/favicons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="https://www.flitetest.com/alexa/favicons/manifest.json">
+    <link rel="mask-icon" href="https://www.flitetest.com/alexa/favicons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="https://www.flitetest.com/alexa/favicons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="FliteTest">
+    <meta name="application-name" content="FliteTest">
+    <meta name="msapplication-config" content="/alexa/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+            <meta property="og:url" content="//flitetest.com/articles/slow-stick-scratch-build">
+        <meta property="og:title" content="Slow Stick Scratch Build">
+        <meta property="og:type" content="article">
+        <meta property="og:image" content="https://s3.amazonaws.com/assets.flitetest.com/article_thumbnails/small/01-jpg_1401134849.jpg">
+        <meta property="og:site_name" content="Flite Test">
+        <meta property="og:description" content="I wanted to build a slow stick which would not be too slow and also not too fast. I managed to pull if off. Here is how.">
+        <!--[if lt IE 9]>
+    <script src="//oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">#mc_embed_signup input.mce_inline_error { border-color:#6B0505; } #mc_embed_signup div.mce_inline_error { margin: 0 0 1em 0; padding: 5px 10px; background-color:#6B0505; font-weight: bold; z-index: 1; color:#fff; }</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak{display:none;}ng\:form{display:block;}</style><meta http-equiv="origin-trial" content="AzoawhTRDevLR66Y6MROu167EDncFPBvcKOaQispTo9ouEt5LvcBjnRFqiAByRT+2cDHG1Yj4dXwpLeIhc98/gIAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A6+nc62kbJgC46ypOwRsNW6RkDn2x7tgRh0wp7jb3DtFF7oEhu1hhm4rdZHZ6zXvnKZLlYcBlQUImC4d3kKihAcAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A/9La288e7MDEU2ifusFnMg1C2Ij6uoa/Z/ylwJIXSsWfK37oESIPbxbt4IU86OGqDEPnNVruUiMjfKo65H/CQwAAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjYxMjk5MTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><style type="text/css" data-fbcssmodules="css:fb.css.base css:fb.css.dialog css:fb.css.iframewidget css:fb.css.customer_chat_plugin_iframe">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_reposition{overflow:hidden;position:relative}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}@keyframes fb_transform{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}.fb_animate{animation:fb_transform .3s forwards}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_dialog_advanced{border-radius:8px;padding:10px}.fb_dialog_content{background:#fff;color:#373737}.fb_dialog_close_icon{background:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{left:5px;right:auto;top:5px}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent}.fb_dialog_close_icon:active{background:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #365899;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{height:100%;left:0;margin:0;overflow:visible;position:absolute;top:-10000px;transform:none;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{background:none;height:auto;min-height:initial;min-width:initial;width:auto}.fb_dialog.fb_dialog_mobile.loading.centered #fb_dialog_loader_spinner{width:100%}.fb_dialog.fb_dialog_mobile.loading.centered .fb_dialog_content{background:none}.loading.centered #fb_dialog_loader_close{clear:both;color:#fff;display:block;font-size:18px;padding-top:20px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .4);bottom:0;left:0;min-height:100%;position:absolute;right:0;top:0;width:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_mobile .fb_dialog_iframe{position:sticky;top:0}.fb_dialog_content .dialog_header{background:linear-gradient(from(#738aba), to(#2c4987));border-bottom:1px solid;border-color:#043b87;box-shadow:white 0 1px 1px -1px inset;color:#fff;font:bold 14px Helvetica, sans-serif;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:linear-gradient(from(#4267B2), to(#2a4887));background-clip:padding-box;border:1px solid #29487d;border-radius:3px;display:inline-block;line-height:18px;margin-top:3px;max-width:85px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{background:none;border:none;color:#fff;font:bold 12px Helvetica, sans-serif;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #4a4a4a;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f5f6f7;border:1px solid #4a4a4a;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}#fb_dialog_loader_spinner{animation:rotateSpinner 1.2s linear infinite;background-color:transparent;background-image:url(https://z-p3-static.xx.fbcdn.net/rsrc.php/v3/yD/r/t-wz8gw1xG1.png);background-position:50% 50%;background-repeat:no-repeat;height:24px;width:24px}@keyframes rotateSpinner{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_fluid_desktop,.fb_iframe_widget_fluid_desktop span,.fb_iframe_widget_fluid_desktop iframe{max-width:100%}.fb_iframe_widget_fluid_desktop iframe{min-width:220px;position:relative}.fb_iframe_widget_lift{z-index:1}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}
+.fb_mpn_mobile_landing_page_slide_out{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_out_from_left{animation-duration:200ms;animation-name:fb_mpn_landing_page_slide_out_from_left;transition-timing-function:ease-in}.fb_mpn_mobile_landing_page_slide_up{animation-duration:500ms;animation-name:fb_mpn_landing_page_slide_up;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_in{animation-duration:300ms;animation-name:fb_mpn_bounce_in;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out{animation-duration:300ms;animation-name:fb_mpn_bounce_out;transition-timing-function:ease-in}.fb_mpn_mobile_bounce_out_v2{animation-duration:300ms;animation-name:fb_mpn_fade_out;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_v2{animation-duration:300ms;animation-name:fb_bounce_in_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_in_from_left{animation-duration:300ms;animation-name:fb_bounce_in_from_left;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_v2{animation-duration:300ms;animation-name:fb_bounce_out_v2;transition-timing-function:ease-in}.fb_customer_chat_bounce_out_from_left{animation-duration:300ms;animation-name:fb_bounce_out_from_left;transition-timing-function:ease-in}.fb_invisible_flow{display:inherit;height:0;overflow-x:hidden;width:0}@keyframes fb_mpn_landing_page_slide_out{0%{margin:0 12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;margin:0 24px;width:60px}}@keyframes fb_mpn_landing_page_slide_out_from_left{0%{left:12px;width:100% - 24px}60%{border-radius:18px}100%{border-radius:50%;left:12px;width:60px}}@keyframes fb_mpn_landing_page_slide_up{0%{bottom:0;opacity:0}100%{bottom:24px;opacity:1}}@keyframes fb_mpn_bounce_in{0%{opacity:.5;top:100%}100%{opacity:1;top:0}}@keyframes fb_mpn_fade_out{0%{bottom:30px;opacity:1}100%{bottom:0;opacity:0}}@keyframes fb_mpn_bounce_out{0%{opacity:1;top:0}100%{opacity:.5;top:100%}}@keyframes fb_bounce_in_v2{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}50%{transform:scale(1.03, 1.03);transform-origin:bottom right}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}}@keyframes fb_bounce_in_from_left{0%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}50%{transform:scale(1.03, 1.03);transform-origin:bottom left}100%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}}@keyframes fb_bounce_out_v2{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom right}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom right}}@keyframes fb_bounce_out_from_left{0%{opacity:1;transform:scale(1, 1);transform-origin:bottom left}100%{opacity:0;transform:scale(0, 0);transform-origin:bottom left}}@keyframes slideInFromBottom{0%{opacity:.1;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}@keyframes slideInFromBottomDelay{0%{opacity:0;transform:translateY(100%)}97%{opacity:0;transform:translateY(100%)}100%{opacity:1;transform:translateY(0)}}</style></head>
+<body ng-app="flitetest" style="padding-top: 144px;" class="ng-scope">
+
+
+<nav id="mobile-nav" class="navbar mobile-nav navmenu navmenu-fixed-left offcanvas" role="navigation">
+    <div class="container-fluid">
+        <ul class="nav navmenu-nav navbar-nav">
+            <li><a title="Home" href="https://www.flitetest.com/">Home</a></li>
+            <li><a title="Show" href="https://www.flitetest.com/show">Show</a></li>
+            <li class="dropdown">
+                <a title="Articles" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Articles <span class="caret"></span></a>
+                <ul class="dropdown-menu navmenu-nav">
+                    <li><a href="https://www.flitetest.com/articles" title="All Articles">ALL CATEGORIES</a></li>
+                    <li><a href="https://www.flitetest.com/planes" title="Planes">PLANES</a></li>
+                    <li><a href="https://www.flitetest.com/multi-rotor" title="Multi Rotor">MULTI ROTOR</a></li>
+                    <li><a href="https://www.flitetest.com/helicopters" title="Helicopters">HELICOPTERS</a></li>
+                    <li><a href="https://www.flitetest.com/fpv" title="FPV">FPV</a></li>
+                    <li><a href="https://www.flitetest.com/scratch-builds" title="Scratch Builds">SCRATCH BUILDS</a></li>
+                    <li><a href="https://www.flitetest.com/workbench" title="Workbench">WORKBENCH</a></li>
+                    <li><a href="https://www.flitetest.com/news" title="News">NEWS</a></li>
+                    <li><a href="https://www.flitetest.com/articles#/cats=ft-articles&amp;listSort=date_high_to_low" title="FT Articles">FT
+                            ARTICLES</a></li>
+                </ul>
+            </li>
+            <li><a title="Store" href="https://store.flitetest.com/" target="_blank">Store</a></li>
+            <li><a title="Get Started" href="https://www.flitetest.com/getting-started">Get Started</a>
+            </li>
+            <li><a title="Forum" href="http://forum.flitetest.com/" target="_blank">Forum</a></li>
+			<li><a title="Airpark" href="http://www.edgewaterairpark.com/" target="_blank">Airpark</a></li>
+            <li><a title="Education" href="https://www.ftstem.com/" target="_blank">Education</a></li>
+                    </ul>
+        <form action="/search" method="get" class="navbar-form site-search ng-pristine ng-valid">
+            <div class="form-group">
+                <div class="input-group">
+                    <input name="q" type="text" class="form-control" placeholder="Search this site...">
+                    <span class="input-group-btn">
+                            <button type="submit" class="btn btn-red"><i class="fa fa-fw fa-search" aria-hidden="true"></i></button>
+                        </span>
+                </div>
+            </div>
+        </form>
+        <ul class="social-links">
+            <li><a target="_blank" title="Facebook" href="https://www.facebook.com/flitetest"><i class="fa fa-fw fa-facebook-official"></i></a></li>
+            <li><a target="_blank" title="YouTube" href="https://www.youtube.com/user/flitetest/featured"><i class="fa fa-fw fa-youtube"></i></a></li>
+            <li><a target="_blank" title="Twitter" href="https://twitter.com/FliteTest"><i class="fa fa-fw fa-twitter"></i></a></li>
+            <li><a target="_blank" title="Instagram" href="https://instagram.com/flitetest"><i class="fa fa-fw fa-instagram"></i></a></li>
+            <li><a target="_blank" title="Google+" href="https://plus.google.com/+FlitetestHQ/"><i class="fa fa-fw fa-google-plus"></i></a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<header id="header" class="minified">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3">
+                <div class="account-bar">
+
+                                            <div class="hidden-xs hidden-sm">
+                            <p>Already a member?
+                                <a href="https://www.flitetest.com/users/login" title="Member Log-In"><i class="fa fa-fw fa-sign-in"></i> Log-In</a>
+                                &nbsp;or
+                                <a href="https://www.flitetest.com/me/register" title="Register Now">Register Now</a>
+                            </p>
+                        </div>
+                        <div class="hidden-md hidden-lg">
+                            <a href="https://www.flitetest.com/users/login" title="Member Log-In" class="btn btn-red border">Member Log-In</a>
+                            <a href="https://www.flitetest.com/me/register" title="Register Now" class="btn btn-red border">Register Now</a>
+                        </div>
+                    
+                </div>
+                <div class="row hidden-xs hidden-sm">
+                    <div class="col-md-7 col-lg-8">
+                        <ul class="social-links">
+                            <li><a target="_blank" title="Facebook" href="https://www.facebook.com/flitetest"><i class="fa fa-fw fa-facebook-official"></i></a></li>
+                            <li><a target="_blank" title="YouTube" href="https://www.youtube.com/user/flitetest/featured"><i class="fa fa-fw fa-youtube"></i></a></li>
+                            <li><a target="_blank" title="Twitter" href="https://twitter.com/FliteTest"><i class="fa fa-fw fa-twitter"></i></a></li>
+                            <li><a target="_blank" title="Instagram" href="https://instagram.com/flitetest"><i class="fa fa-fw fa-instagram"></i></a></li>
+                            <li><a target="_blank" title="Google+" href="https://plus.google.com/+FlitetestHQ/"><i class="fa fa-fw fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-5 col-lg-4">
+                        <form action="/search" method="get" class="site-search ng-pristine ng-valid">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input name="q" type="text" class="form-control" placeholder="Search this site...">
+                                    <span class="input-group-btn">
+                                            <button type="submit" class="btn btn-black"><i class="fa fa-fw fa-search" aria-hidden="true"></i></button>
+                                        </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div><!--/.col-->
+        </div><!--/.row-->
+    </div><!--/.container-->
+        <div class="navtop">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 relative">
+                    <a class="logo" title="Home" href="https://www.flitetest.com/">
+                        <img alt="Flite Test Logo" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/flite-test-logo.png">
+                    </a>
+                </div>
+                <div class="col-md-9">
+                    <nav class="navbar">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#mobile-nav" aria-expanded="false" aria-controls="navbar">
+                                <span class="sr-only">Toggle Navigation</span>
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                            </button>
+                                                            <a href="https://www.flitetest.com/users/login" title="Member Log-In" class="navbar-btn log-in"><i class="fa fa-sign-in"></i></a>
+                                                    </div>
+                        <div id="navbar" class="navbar-collapse collapse hidden-md hidden-lg">
+                            <ul class="nav navmenu-nav navbar-right">
+                                <li><a title="Home" href="https://www.flitetest.com/">Home</a></li>
+                                <li><a title="Show" href="https://www.flitetest.com/show">Show</a>
+                                </li>
+                                <li><a title="Articles" href="https://www.flitetest.com/articles">Articles</a>
+                                </li>
+                                <li><a title="Store" href="https://store.flitetest.com/" target="_blank">Store</a></li>
+                                <li><a title="Get Started" href="https://www.flitetest.com/getting-started">Get
+                                        Started</a></li>
+                                                                
+                                <li><a title="Forum" href="http://forum.flitetest.com/" target="_blank">Forum</a></li>
+								<li><a title="Airpark" href="http://www.edgewaterairpark.com/" target="_blank">Airpark</a></li>
+                                <li><a title="Education" href="https://www.ftstem.com/" target="_blank">Education</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </div><!--/.nav-top-->
+    <div id="article-sticky-bar-wrap">
+
+        <div id="article-sticky-bar">
+
+            <div class="article-nav">
+
+                <div class="article-nav-prev">
+                    <a href="https://www.flitetest.com/articles/version-2-of-the-tricopter-v2-6hv-with-no-hv" title="Previous Article"><i class="fa fa-fw fa-backward"></i></a>
+                </div><!--article-nav-prev-->
+
+                <a href="https://www.flitetest.com/authors/rahul_sutar" class="avatar"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/profilepic1-jpg_1395028393.jpeg"></a>
+
+                <div class="article-title">
+                                        <h4>Slow Stick Scratch Build</h4>
+                </div><!--/.article-title-->
+
+                <div class="article-nav-next">
+                    <a href="https://www.flitetest.com/articles/taking-to-the-sky-s-made-easy-with-flitetest" title="Next Article"><i class="fa fa-fw fa-forward"></i></a>
+                </div><!--article-nav-next-->
+
+            </div><!--/.article-nav-->
+
+            <ul class="ancillary-tools">
+
+                <li class="like">
+                    <!----><a id="articleLike" title="Like Article" href="#" class=""><i class="fa fa-thumbs-up"></i></a>
+                </li>
+
+                <li class="comments">
+                    <a id="articleComments" title="View Comments" href="#"><i class="fa fa-comments"></i><span class="count">17</span></a>
+                </li><!--/.comments-->
+
+                <li class="bookmark">
+                    <a id="articleBookmark" title="Bookmark Article" href="#" class=""><i class="fa fa-bookmark"></i></a>
+                </li><!--/.bookmark-->
+
+                <li id="share-specifics-wrap" class="share">
+                    <ul id="share-specifics">
+                        <li><a title="Share on Facebook" href="#"><i class="fa fa-fw fa-facebook facebook-share"></i></a></li>
+                        <li><a title="Share on Twitter" href="#"><i class="fa fa-fw fa-twitter twitter-share"></i></a></li>
+                        <li><a title="Share via Email" href="#"><i class="fa fa-fw fa-envelope email-share"></i></a></li>
+                    </ul>
+                    <a id="toggle-share-specifics" title="Toggle Sharing Links" href="#"><i class="fa fa-share-alt"></i></a>
+                </li><!--/.share-->
+
+            </ul><!--/.ancillary-tools-->
+
+        </div><!--/#article-sticky-bar-->
+
+        <div class="scrolling-progress-bar">
+            <div class="scrolling-progress-bar-fill" style="width: 107.951%;"></div>
+        </div>
+
+    </div></header>
+
+
+    <div id="article-detail-page">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8 content-canvas">
+
+                    <div id="article-header" class="article-header">
+                        <div class="visible-print-block print-logo">
+                            <img alt="Flite Test Logo" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/flite-test-logo.png">
+                        </div>
+                        <h1 class="article-title">Slow Stick Scratch Build</h1>
+                        <div class="meta">
+                            <span class="cite">by <a href="https://www.flitetest.com/authors/rahul_sutar" class="author-name">rahul.sutar</a></span>
+                            <span class="sep"> | </span>
+                            <span class="date">May 26, 2014</span>
+                            <span class="sep last"> | </span>
+                            <span class="rating">
+							                                <span class="stars"><i class="fa fa-star" aria-hidden="true"></i></span>								<!--derivate ratings for backward compatibility-->
+								<span id="rating-count">(7)</span>
+								<a id="articleLikeInline" title="Like Article" href="#" class=""><i class="fa fa-thumbs-up"></i></a>
+                            </span>
+                            <span class="category">Posted in <span class="ribbon how-to"><a href="https://www.flitetest.com/types/how-to">How To</a></span></span>
+                                                    </div>
+                        
+                    </div><!--/.article-header-->
+
+                    <div id="article-content" class="article-content">
+                        <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>I got into RC hobby and wanted a plane which will be very easy to 
+fly. I made a lot of foamies and crashed them ending up spending most of
+ the time making planes rather than flying them. Although making them is
+ a very knowlegable experience altogether. You get to learn a big deal 
+of things, flight dynamics and whole lot of things and the most 
+important thing is that I had a lot of fun.</p>
+<p>So finally I decided to make a slow stick. I also wanted it not to be
+ too slow and also not too fast. And a slow stick is easy to build and 
+difficult to break. I also wanted it to be small enough to carry around 
+easily.</p>
+<p>&nbsp;</p>
+<p>This is its maiden flight video. I was flying very graciously. Loved it a lot and enjoyed.</p>
+<p></p><div class="youtubeVideo" rel="twr8R16-FYA"></div><div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/twr8R16-FYA.html" allowfullscreen="" frameborder="0"></iframe></div><p></p>
+<p>&nbsp;</p>
+<p><strong>Power System<br></strong></p>
+<p>1) 2826 1900 KV brushless motor</p>
+<p>2) 8 x 3.8 Slow flyer prop</p>
+<p>3) 20 amps ESC</p>
+<p>4) 9 gram servos x 3</p>
+<p>5) 2S 1000 Mah Lipo</p>
+<p>This power setup works absolutely fine doesnt gets hot at all and has
+ ample of power. I havent tried doing loops yet but I guess this 
+definitely wont be a problem with basic aerobatics. I prefered using 
+high KV motor with 2S lipo and keep the weight minimim rather than using
+ a low KV motor with 3S or 4S lipo.</p>
+<p>&nbsp;</p>
+<p>These are the measurements for the slow stick.</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/measurements-png_1401133012.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/measurements-png_1401133012.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>Slow stick tail assembly. I have used 2mm plywood to cut the mount 
+for tail servos. One for rudder and one for elevator. I have used the 
+linkage stoppers to make the adjustments easy. I like to adjust control 
+surfaces mechanically rahter than trimming them so that I can use the 
+trimming for fine tuning.</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/09-jpg_1401133997.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/09-jpg_1401133997.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>This is how I have attached the horizontal stabilizer to the wooden 
+boom. I used small screws to attach a 2 mm plywood support for 
+horizontal stabilizer rather than just a gluing it to the stick.</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/05-jpg_1401134020.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/05-jpg_1401134020.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>This is how tail looks after complete assembly</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/08-jpg_1401134120.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/08-jpg_1401134120.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Wing attachment. Here too I screwed a 2mm plywood and glued the wing 
+to this surface. To make the wing attachment more solid i taped it with 
+the extreme packaging tape.</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/04-jpg_1401134280.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/04-jpg_1401134280.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/07-jpg_1401134354.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/07-jpg_1401134354.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>And finally the motor mount. I used a motor mount which you will find
+ easily in you local hobby store and zip tied it to the support which I 
+screwed at the tip of the wooden boom.</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/10-jpg_1401134511.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/10-jpg_1401134511.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/06-jpg_1401134547.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/06-jpg_1401134547.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>And this is how it looked when I finished building it.</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/02-jpg_1401134605.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/02-jpg_1401134605.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>Then I bought some venyle sheets to make the decals. I found them 
+very cheap at a shop close to my place. After the graphics I looked just
+ awesome and cool. I wanted bright colors so that I could spot it 
+easily. I put the decals after its first maiden flight. Just wanted to 
+make sure that this thing flies before putting in efforts for graphics. 
+:-P</p>
+<p><a href="https://s3.amazonaws.com/assets.flitetest.com/article_images/full/01-jpg_1401134787.jpg" target="_blank"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/01-jpg_1401134787.jpeg" alt="" class="img-responsive"></a></p>
+<p>&nbsp;</p>
+<p>So gyus build and fly....</p>
+<p>This is just a lot of fun flying it.</p>
+<p>Happy Flying !!!</p>                    </div><!--/.article-content-->
+					<div class="control-group field" id="mapsContainer" style="display: none;">
+						<div id="gmapsCanvas" style="margin: auto;width: 100%; height: 300px;"></div>
+					</div>
+                    <div class="article-footer">
+					   <a name="articleFooter" style="padding-top: 250px;" href=""></a>
+					    <div id="scrollhere" class="rate-this-article">
+                            <form name="rate-this-article-form" class="rate-this-article-form ng-pristine ng-valid">
+                                <input type="hidden" name="article-id" class="article-id">
+                                <input type="hidden" name="article-rating" class="article-rating">
+                                <h3 id="ratemessage"></h3>
+								<button id="articleLikeInlineEnd" href="#" class=""><h3>Recommend This Article</h3><i style="font-size: 22px;padding:  0px 10px;" class="fa fa-thumbs-up"></i></button>
+								                                  <p style="display:none;" class="rate-not-logged-in">You need to <a href="https://www.flitetest.com/users/login?r=/articles/slow-stick-scratch-build">log-in</a> to rate articles.</p>
+                                                                  
+                            </form>
+
+                        </div>
+                        	    <ul class="outbound-social top">
+            <li class="fb"><a title="Share on Facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://flitetest.com/articles/slow-stick-scratch-build"><i class="fa fa-fw fa-facebook"></i></a></li>
+            <li class="gp"><a title="Share on Google+" target="_blank" href="https://plus.google.com/share?url=https://flitetest.com/articles/slow-stick-scratch-build"><i class="fa fa-fw fa-google-plus"></i></a></li>
+            <li class="tw"><a title="Share on Twitter" target="_blank" href="https://twitter.com/share?url=https://flitetest.com/articles/slow-stick-scratch-build"><i class="fa fa-fw fa-twitter"></i></a></li>
+            <li class="local email"><a title="Email This Article" href="mailto:?subject=Check out this article on FliteTest!&amp;body=https://flitetest.com/articles/slow-stick-scratch-build"><i class="fa fa-fw fa-envelope"></i> <span>Email</span></a></li>
+            <li class="local print"><a title="Print This Article" class="print-button" href="javascript:window.print();"><i class="fa fa-fw fa-print"></i> <span>Print</span></a></li>
+            <li class="local bookmark">
+              <a id="bookmarkBtn" style="" title="Bookmark This Article" class="bookmark-button bookmarkBtn" href="https://www.flitetest.com/users/login?r=/articles/%3C?=slow-stick-scratch-build?%3E"><i class="fa fa-fw fa-bookmark"></i> <span>Log In to Bookmark</span></a>
+              <a id="unbookmarkBtn" style="display: none" title="Un-Bookmark This Article" class="bookmark-button unbookmarkBtn" href="javascript:;"><i class="fa fa-fw fa-bookmark"></i> <span>Un-Bookmark</span></a>
+            </li>
+        </ul>                        <div class="visible-print-block print-footer">
+                            <p><strong>- Find this article &amp; others like it at www.FliteTest.com -</strong></p>
+                        </div>
+                    </div><!--/.article-footer-->
+
+                    
+                                        
+                    
+                <div id="comments" class="comments">
+                    <h3>COMMENTS</h3>
+                    <div class="comment-list">
+
+                                <div class="comment-container commentContainer" rel="538feef6ab8f1e775c000023">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/xboxlalo" target="_blank">xboxlalo</a> on June 5, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538feef6ab8f1e775c000023" method="POST">
+                    <input type="hidden" name="comment_id" value="538feef6ab8f1e775c000023">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538feef6ab8f1e775c000023" href=""></a>
+            <div class="well comment-content">
+                where is the CG?<br>
+                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                        <div class="comment-container commentContainer" rel="538ff254ab8f1e672f0001e7">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/rahul.sutar" target="_blank">rahul.sutar</a> on June 5, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538ff254ab8f1e672f0001e7" method="POST">
+                    <input type="hidden" name="comment_id" value="538ff254ab8f1e672f0001e7">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538ff254ab8f1e672f0001e7" href=""></a>
+            <div class="well comment-content">
+                The CG is 2.5 inches from leading edge of the wing.                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                    </div>
+        </div>
+                <div class="comment-container commentContainer" rel="53902d65ab8f1e2a030000f7">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/anisk" target="_blank">anisk</a> on June 5, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="53902d65ab8f1e2a030000f7" method="POST">
+                    <input type="hidden" name="comment_id" value="53902d65ab8f1e2a030000f7">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_53902d65ab8f1e2a030000f7" href=""></a>
+            <div class="well comment-content">
+                Hi Rahul<br>
+<br>
+Great job, i m too in rc hobby, i just need to now which material u hv 
+used for wings is it thermocol or depron and if you can share the place 
+you have bought them.<br>
+<br>
+Regards<br>
+<br>
+Anis Khan                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                        <div class="comment-container commentContainer" rel="53909e36ab8f1e2602000058">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/rahul.sutar" target="_blank">rahul.sutar</a> on June 5, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="53909e36ab8f1e2602000058" method="POST">
+                    <input type="hidden" name="comment_id" value="53909e36ab8f1e2602000058">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_53909e36ab8f1e2602000058" href=""></a>
+            <div class="well comment-content">
+                I have used 5 mm high density foam. It is very cheaper than depron and lighter too.<br>
+I use high density foam in all my builds. I have never used depron, 
+though I will definitely give it a try in future.                       
+ <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                    </div>
+        </div>
+                <div class="comment-container commentContainer" rel="538c8afbab8f1ef87e00006b">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/suvansh" target="_blank">suvansh</a> on June 2, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538c8afbab8f1ef87e00006b" method="POST">
+                    <input type="hidden" name="comment_id" value="538c8afbab8f1ef87e00006b">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538c8afbab8f1ef87e00006b" href=""></a>
+            <div class="well comment-content">
+                are u in NCC??<br>
+                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                        <div class="comment-container commentContainer" rel="538cb65aab8f1e835e000190">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/rahul.sutar" target="_blank">rahul.sutar</a> on June 2, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538cb65aab8f1e835e000190" method="POST">
+                    <input type="hidden" name="comment_id" value="538cb65aab8f1e835e000190">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538cb65aab8f1e835e000190" href=""></a>
+            <div class="well comment-content">
+                Thanks !!<br>
+No I am not in NCC. The place where I fly is training ground for cops. 
+They allow me to fly there and come over to watch out of curiosity once 
+in a while.                         <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                    </div>
+        </div>
+                <div class="comment-container commentContainer" rel="53b12134ab8f1e7a300001a8">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/pakelika1" target="_blank">pakelika1</a> on June 30, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="53b12134ab8f1e7a300001a8" method="POST">
+                    <input type="hidden" name="comment_id" value="53b12134ab8f1e7a300001a8">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_53b12134ab8f1e7a300001a8" href=""></a>
+            <div class="well comment-content">
+                umm... wow man?...                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                <div class="comment-container commentContainer" rel="538c8a90ab8f1ed465000102">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/suvansh" target="_blank">suvansh</a> on June 2, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538c8a90ab8f1ed465000102" method="POST">
+                    <input type="hidden" name="comment_id" value="538c8a90ab8f1ed465000102">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538c8a90ab8f1ed465000102" href=""></a>
+            <div class="well comment-content">
+                nice built!                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                <div class="comment-container commentContainer" rel="539166c4ab8f1e996a000060">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/gmyers2112" target="_blank">gmyers2112</a> on June 6, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="539166c4ab8f1e996a000060" method="POST">
+                    <input type="hidden" name="comment_id" value="539166c4ab8f1e996a000060">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_539166c4ab8f1e996a000060" href=""></a>
+            <div class="well comment-content">
+                why is there a big ditch and walkway going through the middle of your soccer pitch?                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                        <div class="comment-container commentContainer" rel="5392bba1ab8f1e2705000032">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/rahul.sutar" target="_blank">rahul.sutar</a> on June 7, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="5392bba1ab8f1e2705000032" method="POST">
+                    <input type="hidden" name="comment_id" value="5392bba1ab8f1e2705000032">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_5392bba1ab8f1e2705000032" href=""></a>
+            <div class="well comment-content">
+                That's not the soccer pitch actually. Its a helipad and 
+it is the walkway to it. They have set up the goal post for practice I 
+think.                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                    </div>
+        </div>
+                <div class="comment-container commentContainer" rel="53cf5e9fab8f1e92700000f2">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/kb0bnz" target="_blank">kb0bnz</a> on July 23, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="53cf5e9fab8f1e92700000f2" method="POST">
+                    <input type="hidden" name="comment_id" value="53cf5e9fab8f1e92700000f2">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_53cf5e9fab8f1e92700000f2" href=""></a>
+            <div class="well comment-content">
+                I am having trouble finding your motor mount any info would be nice                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                        <div class="comment-container commentContainer" rel="53d07b7eab8f1eef4700027a">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/rahul.sutar" target="_blank">rahul.sutar</a> on July 23, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="53d07b7eab8f1eef4700027a" method="POST">
+                    <input type="hidden" name="comment_id" value="53d07b7eab8f1eef4700027a">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_53d07b7eab8f1eef4700027a" href=""></a>
+            <div class="well comment-content">
+                You can buy it from the following link. <br>
+www.rcbazaar.com/products/2297-mount-kit-set-for-c2826-motor-series.aspx <br>
+See if they ship at your place. <br>
+<br>
+Or <br>
+<br>
+You can get it custom made at your local engineering workshop.<br>
+<br>
+Or<br>
+<br>
+You can bend a aluminium strap at right angle and drill holes in it to attach your motor. <br>
+Or you can do your own mount, improvise mate... :-)                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                    </div>
+        </div>
+                <div class="comment-container commentContainer" rel="538df97cab8f1ef13c00011a">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/BuckE67" target="_blank">BuckE67</a> on June 3, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538df97cab8f1ef13c00011a" method="POST">
+                    <input type="hidden" name="comment_id" value="538df97cab8f1ef13c00011a">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538df97cab8f1ef13c00011a" href=""></a>
+            <div class="well comment-content">
+                Very nice plane!  Thanks for sharing!                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                        <div class="comment-container commentContainer" rel="538ff25bab8f1e6469000008">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/rahul.sutar" target="_blank">rahul.sutar</a> on June 5, 2014                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="538ff25bab8f1e6469000008" method="POST">
+                    <input type="hidden" name="comment_id" value="538ff25bab8f1e6469000008">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_538ff25bab8f1e6469000008" href=""></a>
+            <div class="well comment-content">
+                Thanks !!!                         <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                    </div>
+        </div>
+                <div class="comment-container commentContainer" rel="55db44fc0fc054f83300001e">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/ashishc" target="_blank">ashishc</a> on August 24, 2015                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="55db44fc0fc054f83300001e" method="POST">
+                    <input type="hidden" name="comment_id" value="55db44fc0fc054f83300001e">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_55db44fc0fc054f83300001e" href=""></a>
+            <div class="well comment-content">
+                can you give details on how you made the landing gear?                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+                <div class="comment-container commentContainer" rel="57a4ed73803097a7640000e7">
+            <div class="meta">
+                <a href="https://www.flitetest.com/authors/Hayshaker" target="_blank">Hayshaker</a> on August 5, 2016                                                <form action="/articles/reportComment" class="reportCommentForm ng-pristine ng-valid" rel="57a4ed73803097a7640000e7" method="POST">
+                    <input type="hidden" name="comment_id" value="57a4ed73803097a7640000e7">
+                    <input type="hidden" name="aid" value="5383a0f7ab8f1e791d0000eb">
+                </form>
+            </div>
+            <a name="comment_57a4ed73803097a7640000e7" href=""></a>
+            <div class="well comment-content">
+                How about details of the wing &amp; mounting?  The 
+airfoil shape - the dihedral angle - the amount of "up" angle. etc.<br>
+Is there any down and/or right thrust in the motor?<br>
+Ron                        <br>
+                        <small><a href="https://www.flitetest.com/me/login">Log In</a> to reply</small>
+                                    </div>
+            <div class="comment-replies replies">
+                            </div>
+        </div>
+        
+
+                    </div><!--/.comment-list-->
+
+                        <hr>
+
+                        <div class="comment-form">
+
+                            <!--<h4>Leave a Comment</h4>-->
+                            <h4>You need to <a href="https://www.flitetest.com/users/login?r=/articles/slow-stick-scratch-build">log-in</a> to comment on articles.</h4>
+
+                        </div>
+						<hr>
+                    </div>
+
+                </div><!--/.col.content-canvas-->
+
+                <div class="col-md-3 col-md-offset-1 sidebar">
+                    <div class="author-card">
+                        <div class="avatar-wrap">
+                            <a href="https://www.flitetest.com/authors/rahul_sutar"><img class="avatar" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/profilepic1-jpg_1395028393.jpeg"></a>
+                        </div>
+                        <div class="name-wrap">
+                            <h4 class="name"><a href="https://www.flitetest.com/authors/rahul_sutar">rahul_sutar</a></h4>
+                        </div>
+                        <div class="rank-wrap">
+                            <span class="rank">(70)</span>
+                        </div>
+
+                        <!--<span class="member-since">Member Since 2013</span>-->
+                    </div><!--/.author-card-->
+
+                    <div class="adZone">
+                                                                                                                        						<!--ADSENSE-->
+						<script async="" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/f.txt"></script>
+							<!-- FliteTest Square
+							<ins class="adsbygoogle"
+							     style="display:inline-block;width:300px;height:250px"
+    	 						data-ad-client="ca-pub-6166083963060360"
+     							data-ad-slot="3085460568"></ins>
+							<script>
+							(adsbygoogle = window.adsbygoogle || []).push({});
+							</script>
+						<!--ADSENSE END-->
+                    </div>
+
+                </div><!--/.col.sidebar-->
+
+
+            </div><!--/.row-->
+        </div><!--/.container-->
+    </div><!--/#articles-page-->
+
+
+
+    <!--/#article-sticky-bar-wrap-->
+
+
+
+
+<script type="text/javascript">var switchTo5x = true;</script>
+<!--
+<script type="text/javascript" src="https://ws.sharethis.com/button/buttons.js"></script>
+<script type="text/javascript">stLight.options({ publisher: "ur-e455c0ce-52c7-c11f-62e0-330970bda04" }); </script>
+-->
+
+<script type="text/javascript">
+function ratingJump() {
+    $('html, body').animate({
+        scrollTop: $("#scrollhere").offset().top-150
+    }, 200);
+};
+</script>
+
+<style>
+    .js-video {
+        height: 0;
+        padding-top: 25px;
+        padding-bottom: 67.5%;
+        margin-bottom: 10px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .js-video.widescreen {
+        padding-bottom: 57.25%;
+    }
+
+    .js-video.vimeo {
+        padding-top: 0;
+    }
+
+    .js-video embed, .js-video iframe, .js-video object, .js-video video {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .articleContent img{
+        display: block;
+        margin: 20px auto;
+    }
+
+
+    #gmapsCanvas img { max-width: none; }
+</style>
+
+
+
+<script type="text/javascript">
+/*
+Google Maps Integration
+*/
+function gmaps_init(){
+  // center of the universea
+  if (0 != 0) {
+	var latlng = new google.maps.LatLng(0, 0);
+  } else {
+	var latlng = new google.maps.LatLng(39.968701,-82.151127);
+  }
+
+  var options = {
+    zoom: 7,
+    center: latlng,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  };
+
+  // create our map object
+  map = new google.maps.Map(document.getElementById("gmapsCanvas"), options);
+
+  // the geocoder object allows us to do latlng lookup based on address
+  geocoder = new google.maps.Geocoder();
+
+  // the marker shows us the position of the latest address
+  marker = new google.maps.Marker({
+    map: map,
+    draggable: false
+  });
+
+    marker.setPosition(latlng);
+    map.setCenter(latlng);
+    geocode_lookup( 'latLng', latlng  );
+
+        var contentString = '<div id="content">'+
+            'Flying Location'+
+            '</div>';
+
+        var infowindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+
+  $('#gmaps-error').hide();
+}
+
+// move the marker to a new position, and center the map on it
+function update_map( geometry ) {
+  map.fitBounds( geometry.viewport )
+  marker.setPosition( geometry.location )
+}
+
+// fill in the UI elements with new position data
+function update_ui( address, latLng ) {
+ // $('#gmapsInputAddress').autocomplete("close");
+ // $('#gmapsInputAddress').val(address);
+ // $('#gmapsLatitude').val(latLng.lat());
+ // $('#gmapsLongitude').val(latLng.lng());
+}
+
+// Query the Google geocode object
+//
+// type: 'address' for search by address
+//       'latLng'  for search by latLng (reverse lookup)
+//
+// value: search query
+//
+// update: should we update the map (center map and position marker)?
+function geocode_lookup( type, value, update ) {
+  // default value: update = false
+  update = typeof update !== 'undefined' ? update : false;
+
+  request = {};
+  request[type] = value;
+
+  geocoder.geocode(request, function(results, status) {
+    $('#gmaps-error').html('');
+    $('#gmaps-error').hide();
+    if (status == google.maps.GeocoderStatus.OK) {
+      // Google geocoding has succeeded!
+      if (results[0]) {
+        // Always update the UI elements with new location data
+        update_ui( results[0].formatted_address,
+                   results[0].geometry.location )
+
+        // Only update the map (position marker and center map) if requested
+        if( update ) { update_map( results[0].geometry ) }
+      } else {
+        // Geocoder status ok but no results!?
+        $('#gmaps-error').html("Sorry, something went wrong. Try again!");
+        $('#gmaps-error').show();
+      }
+    } else {
+      // Google Geocoding has failed. Two common reasons:
+      //   * Address not recognised (e.g. search for 'zxxzcxczxcx')
+      //   * Location doesn't map to address (e.g. click in middle of Atlantic)
+
+      if( type == 'address' ) {
+        // User has typed in an address which we can't geocode to a location
+        $('#gmaps-error').html("Sorry! We couldn't find " + value + ". Try a different search term, or click the map." );
+        $('#gmaps-error').show();
+      } else {
+        // User has clicked or dragged marker to somewhere that Google can't do a reverse lookup for
+        // In this case we display a warning, clear the address box, but fill in LatLng
+        $('#gmaps-error').html("Woah... that's pretty remote! You're going to have to manually enter a place name." );
+//        $('#gmaps-error').show();
+        update_ui('', value)
+      }
+    };
+  });
+};
+
+// initialise the jqueryUI autocomplete element
+function autocomplete_init() {
+  $("#gmapsInputAddress").autocomplete({
+
+    // source is the list of input options shown in the autocomplete dropdown.
+    // see documentation: http://jqueryui.com/demos/autocomplete/
+    source: function(request,response) {
+
+      // the geocode method takes an address or LatLng to search for
+      // and a callback function which should process the results into
+      // a format accepted by jqueryUI autocomplete
+      geocoder.geocode( {'address': request.term }, function(results, status) {
+        response($.map(results, function(item) {
+        	//alert("HERE");
+        	console.log(item);
+          return {
+            label: item.formatted_address, // appears in dropdown box
+            value: item.formatted_address, // inserted into input element when selected
+            geocode: item                  // all geocode data: used in select callback event
+          }
+        }));
+      })
+    },
+
+    // event triggered when drop-down option selected
+    select: function(event,ui){
+      update_ui(  ui.item.value, ui.item.geocode.geometry.location )
+      update_map( ui.item.geocode.geometry )
+    }
+  });
+
+  // triggered when user presses a key in the address box
+  $("#gmapsInputAddress").bind('keydown', function(event) {
+    if(event.keyCode == 13) {
+      geocode_lookup( 'address', $('#gmapsInputAddress').val(), true );
+
+      // ensures dropdown disappears when enter is pressed
+      $('#gmapsInputAddress').autocomplete("disable")
+    } else {
+      // re-enable if previously disabled above
+      $('#gmapsInputAddress').autocomplete("enable")
+    }
+  });
+}; // autocomplete_init
+
+/*
+END GOOGLE Maps
+*/
+</script>
+
+<div id="brand-bar" class="brand-bar">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-4">
+                <a target="_blank" href="http://flitefest.com/" class="touch-hover brand-link">
+                    <img alt="Flite Fest Website" class="cover" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/homep_link_FliteFestBW.jpg">
+                    <img alt="Flite Fest Website" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/homep_link_FliteFestClr.jpg">
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+                <a target="_blank" href="https://www.ftstem.com/" class="touch-hover brand-link">
+                    <img alt="FliteTest Stem Website" class="cover" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/homep_link_StemBw.jpg">
+                    <img alt="FliteTest Stem Website" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/homep_link_StemClr.jpg">
+                </a>
+            </div>
+
+            <div class="col-sm-4">
+                <a target="_blank" href="http://www.ftgroups.com/" class="touch-hover brand-link">
+                    <img alt="FliteTest Groups Website" class="cover" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/homep_link_GroupsBw.jpg">
+                    <img alt="FliteTest Groups Website" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/homep_link_GroupsClr.jpg">
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<footer>
+    <div class="container">
+
+        <div class="col-sm-6 col-md-3">
+            <div class="footer-block link-list">
+                <h3 class="footer-heading">Meet Flite Test</h3>
+                                <ul>
+                    <li><a href="https://www.flitetest.com/about_us" title="About Us">About Us</a></li>
+                    <li><a href="https://www.flitetest.com/pages/privacy-policy" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a href="https://www.flitetest.com/termsofuse" title="Terms of Use">Terms of Use</a></li>
+                    <li><a href="https://www.flitetest.com/partnerships" title="Advertising &amp; Sponsorships">Advertising &amp;
+                            Sponsorships</a></li>
+                    <!-- <li><a target="_blank" href="" title="Podcast Voicemail">Podcast Voicemail</a></li> //speakpipe -->
+                    <!-- <li><a href="/newsletter" title="Newsletter">Newsletter</a></li> -->
+					<br>
+                    <li><a target="_blank" href="http://www.edgewaterairpark.com/" title="EdgeWater Airpark" style="font-weight: 700;text-decoration: none;">EDGEWATER AIRPARK</a></li>
+					<li><a target="_blank" href="http://flitefest.com/" title="FLITE FEST" style="font-weight: 700;text-decoration: none;">FLITE FEST</a></li>
+                    <li><a target="_blank" href="https://www.ftstem.com/" title="FT STEM" style="font-weight: 700;text-decoration: none;">STEM / EDUCATION</a></li>
+                    <li><a target="_blank" href="http://www.ftgroups.com/" title="FT GROUPS" style="font-weight: 700;text-decoration: none;">FT GROUPS</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3 col-md-offset-1">
+            <div class="footer-block link-list">
+                <h3 class="footer-heading">Need Help?</h3>
+                                <ul>
+                    <li><a href="https://www.flitetest.com/support" title="Support">Support</a></li>
+                    <li><a href="https://www.flitetest.com/pages/contact" title="Contact Us">Contact Us</a></li>
+                    <li><a href="https://www.flitetest.com/articles#/textSearch=FTScratchBuild" title="Build Plans">Build Plans</a></li>
+                    <li><a href="https://www.flitetest.com/articles#/textSearch=Series:%20beginner%20series" title="Beginner Series">Beginner Series</a></li>
+					<li><a href="https://www.flitetest.com/pages/safetyguidelines" title="Contact Us">Safety Guidelines</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-4 col-md-offset-1">
+            <div class="row">
+                <div class="col-sm-6 col-md-12">
+
+                    <div class="footer-block social">
+                        <h3 class="footer-heading">Connect With Us</h3>
+                        <ul class="social-links">
+                            <li><a target="_blank" title="Facebook" href="https://www.facebook.com/flitetest"><i class="fa fa-fw fa-facebook-official"></i></a></li>
+                            <li><a target="_blank" title="YouTube" href="https://www.youtube.com/user/flitetest/featured"><i class="fa fa-fw fa-youtube"></i></a></li>
+                            <li><a target="_blank" title="Twitter" href="https://twitter.com/FliteTest"><i class="fa fa-fw fa-twitter"></i></a></li>
+                            <li><a target="_blank" title="Instagram" href="https://instagram.com/flitetest"><i class="fa fa-fw fa-instagram"></i></a></li>
+                            <li><a target="_blank" title="Google+" href="https://plus.google.com/+FlitetestHQ/"><i class="fa fa-fw fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="col-sm-6 col-md-12">
+
+
+                    <div class="footer-block subscribe">
+                        <h3 class="footer-heading">Subscribe</h3>
+                        <p class="absent">By joining our mailing list via the home page or during checkout, you agree to
+                            receive periodic yet meaningful email contacts from us and us alone</p>
+							<!-- Newsletter widget -->
+								<!-- Begin MailChimp Signup Form -->
+								<link href="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/classic-10_7.css" rel="stylesheet" type="text/css">
+								<style type="text/css">
+									#mc_embed_signup{background:#000; clear:left; font:14px Helvetica,Arial,sans-serif;}
+									#mc_embed_signup form{padding: 0px; }
+									#mc_embed_signup .button{width:100%; height:46px; background-color:#8f1d21;border-radius: 1px;}
+									#mc_embed_signup .button:hover{background-color:#650f12;}
+									#mc_embed_signup input {width:100%; border-radius: 0px;font-size: 16px;color: #333333;}
+									#mc_embed_signup .mc-field-group {width:100%;}
+									/* Add your own MailChimp form style overrides in your site stylesheet or in this style block.
+									   We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+								</style>
+								<div id="mc_embed_signup">
+								<form action="https://flavors.us9.list-manage.com/subscribe/post?u=41ac11a4ea3b454f67be43f84&amp;id=4d2c6f0cbd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate ng-pristine ng-valid" target="_blank" novalidate="novalidate">
+									<div id="mc_embed_signup_scroll">
+									
+								<div class="mc-field-group">
+									<input type="email" placeholder="email" name="EMAIL" class="required email" id="mce-EMAIL" aria-required="true">
+								</div>
+									<div id="mce-responses" class="clear">
+										<div class="response" id="mce-error-response" style="display:none"></div>
+										<div class="response" id="mce-success-response" style="display:none"></div>
+									</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+									<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_41ac11a4ea3b454f67be43f84_4d2c6f0cbd" tabindex="-1"></div>
+									<div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+									</div>
+								</form>
+								</div>
+								<script type="text/javascript" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/mc-validate.js"></script><script type="text/javascript">(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';fnames[3]='COMPANY';ftypes[3]='text';fnames[4]='ADDRESS';ftypes[4]='address';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+								<!--End mc_embed_signup-->
+					</div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <p class="copyright">Copyright ©2022 Flite Test. All rights reserved.</p>
+        </div>
+
+    </div>
+</footer>
+    <div class="modal" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="section-header">
+                        <h2 class="section-heading">Log-In</h2>
+                        <p class="section-heading-byline">Get access to additional features and goodies.</p>
+                    </div>
+                    <div class="section-content">
+
+                        
+                        <p style="text-align: center;"><a href="https://store.flitetest.com/account/login" target="_blank">Looking for your store account?</a></p>
+                                                <form class="form ng-pristine ng-valid" action="/users/login?r=/articles/slow-stick-scratch-build" method="POST">
+
+                            <div class="form-group" id="usernameGroup">
+                                <label class="control-label">Username</label>
+                                <div class="controls">
+                                    <input class="form-control" type="text" id="username" placeholder="Username" name="username">
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="passwordGroup">
+                                <label class="control-label">Password</label>
+                                <div class="controls">
+                                    <input class="form-control" type="password" id="password" placeholder="Password" name="password">
+                                </div>
+                            </div>
+
+                            <div class="checkbox" id="rememberMe" style="text-align: right;">
+                                <label>
+                                    <input type="checkbox" name="remember_me"> Remember Me
+                                </label>
+                            </div>
+
+                            <div class="form-actions">
+                                <button class="btn btn-red">Log-in</button>
+                                &nbsp;&nbsp;&nbsp;or&nbsp;&nbsp;&nbsp;
+                                <a href="javascript:;" onclick="fbLogin()"><img src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/fblogin.png" style="height: 32px"></a>
+                            </div>
+
+                            <hr>
+
+                            <p><a href="https://www.flitetest.com/users/forgot_password">Forgot Your Password?</a></p>
+
+                            
+                            <p>Don't have an account? <a href="https://www.flitetest.com/me/register?r=/articles/slow-stick-scratch-build">Create An Account Here</a>
+
+                        </p></form>
+
+                    </div>
+                </div><!--/.modal-body-->
+            </div>
+        </div>
+    </div>
+
+
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/jquery.min.js"></script>
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/jasny-bootstrap.min.js"></script>
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/magnific-popup-min.js"></script>
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/flitetest.js"></script>
+
+
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/angular.js"></script>
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/angular-resource.js"></script>
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChy0LN03_g600F2cOt73pcnqwK972HHYk&callback" type="text/javascript"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChy0LN03_g600F2cOt73pcnqwK972HHYk&callback=initMap" type="text/javascript"></script>-->
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/angular-sanitize.js"></script>
+<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/app.js"></script>
+
+
+
+	                                <script type="text/javascript">
+
+                                    /* Hover Funtionality */
+                                    $('ul.stars li.star a').hover( function() {
+                                        $(this).parent('li').prevAll().addClass('hov');
+                                    }, function() {
+                                        $(this).parent('li').prevAll().removeClass('hov');
+                                    });
+
+                                    /* Click Functionality (Overrides Hover) */
+                                    $('ul.stars li.star a').click( function(e) {
+                                        e.preventDefault();
+                                        $('ul.stars li.on').removeClass('on');
+                                        var ratedClick = $(this).data('rating');
+                                        $(this).parent('li').addClass('on');
+                                        $(this).parent('li').prevAll().addClass('on');
+                                        $('.rate-this-article-form input.article-rating').val( ratedClick );
+                                    });
+
+                                    /* Clear Rating Link */
+                                    $('ul.stars li.clear a').click( function(e) {
+                                        e.preventDefault();
+                                        $('ul.stars li.on').removeClass('on');
+                                        $('.rate-this-article-form input.article-rating').val('');
+                                    });
+
+                                </script>
+                                
+	                    <script type="text/javascript">
+
+                        $().ready(function(){
+                            $('#modTemplateChooser').change(function(){
+                                $('#adminComment').val($(this).val());
+                            })
+                        })
+                    </script>
+                    
+	<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/articleRead.js"></script>
+	<script src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/api.js" async="" defer="defer"></script>
+	
+
+<script>
+
+    // Affix sticky bar to header
+    function stickyToHeader() {
+        $('#article-sticky-bar-wrap').appendTo('#header');
+        var headerHeight = $('#header').outerHeight();
+        $('body').css('padding-top', headerHeight+'px');
+    }
+
+    $(document).ready( function(){
+
+        stickyToHeader();
+
+        $('#toggle-share-specifics').on( 'click', function(e) {
+            e.preventDefault();
+            target = $('#share-specifics-wrap');
+            if ( target.hasClass('shown') ) {
+                target.removeClass('shown');
+            } else {
+                target.addClass('shown');
+            }
+            if ($(this).hasClass('pushed')) {
+                $(this).removeClass('pushed');
+            } else {
+                $(this).addClass('pushed');
+            }
+        });
+
+        $('#articleLike, #articleLikeInline, #articleLikeInlineEnd').on( 'click', function(e) {
+            e.preventDefault();
+                          ftUser.loginModal();
+                      });
+
+
+        $('#articleBookmark').on( 'click', function(e) {
+            e.preventDefault();
+                          ftUser.loginModal();
+                      });
+
+        $('#articleComments').on( 'click', function(e) {
+            e.preventDefault();
+            var headerHeight = $('#header').outerHeight() + 40;
+            console.log(headerHeight);
+            $('html, body').animate({
+                scrollTop: $("#comments").offset().top - headerHeight
+            }, 500);
+        });
+    });
+
+    $(window).load(function(){
+        $(window).scroll(function() {
+            var wintop = $(window).scrollTop();
+            var docheight = $('#article-header').outerHeight() + $('#article-content').outerHeight() + 100;
+            var winheight = $(window).height();
+            var totalScroll = (wintop/(docheight-winheight))*100;
+            $(".scrolling-progress-bar-fill").css("width",totalScroll+"%");
+        });
+		
+
+		if ( 0 != 0 ){
+			$("#mapsContainer").slideDown();
+			//google.maps.event.trigger(map, 'resize');
+		} else {
+			$("#mapsContainer").slideUp();
+		}
+		
+    });
+
+</script>
+
+
+
+
+
+
+<script>
+    var articleId = "5383a0f7ab8f1e791d0000eb";
+    var nextArticleSafeName = "";
+    $().ready(function(){
+
+        $(".article-content img").each(function(){
+          $(this).addClass('img-responsive');
+        })
+
+        $(".nextArticle").on('click',function(){
+            window.location = "/articles/"+nextArticleSafeName+"?preview=1";
+        });
+
+                $(".bookmarkBtn").on('click',function(){
+            $.post('/users/addBookmark',{article_id: articleId}, function(response){
+                $(".bookmarkBtn").hide();
+                $(".unbookmarkBtn").show();
+            })
+        })
+
+        $(".unbookmarkBtn").on('click',function(){
+            $.post('/users/removeBookmark',{article_id: articleId}, function(response){
+                $(".bookmarkBtn").show();
+                $(".unbookmarkBtn").hide();
+            })
+        })
+
+        $(".relatedArticle").on('mouseenter',function(){
+            $(this).css('background-color','#EEE')
+        }).on('mouseleave',function(){
+            $(this).css('background-color','#FFF')
+        }).on('click',function(){
+            //location.href = '/articles/'+$(this).attr('rel');
+        })
+
+        $(".youtubeVideo").each(function(){
+            videoId = $(this).attr('rel');
+            //$(this).after('<div class="js-video"><iframe width="560" height="315" src="http://www.youtube.com/embed/'+videoId+'?showinfo=0" frameborder="0" allowfullscreen></iframe></div>');
+            $(this).after('<div class="embed-responsive embed-responsive-16by9"><iframe class="embed-responsive-item" src="https://www.youtube.com/embed/'+videoId+'?showinfo=0" frameborder="0" allowfullscreen></iframe></div>');
+        })
+
+        $(".vimeoVideo").each(function(){
+            videoId = $(this).attr('rel');
+            $(this).after('<div class="js-video vimeo"><iframe src="https://player.vimeo.com/video/'+videoId+'?byline=0&amp;portrait=0&amp;badge=0" width="560" height="315" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></div>');
+        })
+
+        $(".article-content img").each(function(){
+            if ( $(this).parents('a').length == 0 ){
+                href = $(this).attr('src').replace('/medium/','/full/');
+                $(this).wrap("<a href='"+href+"' target='_blank'>")
+            }
+        })
+
+        $(".article-content a").each(function(){
+            //href = $(this).attr('href');
+            //if ( href.indexOf('flitetest.com') == -1 ){
+            $(this).attr("target","_blank");
+            //}
+        });
+
+        $(".facebook-share").on('click',function(e){
+          e.preventDefault();
+          window.open('https://www.facebook.com/sharer/sharer.php?u=https%3A//www.flitetest.com/articles/slow-stick-scratch-build');
+        })
+
+        $(".twitter-share").on('click',function(e){
+          e.preventDefault();
+          var msg = "Check out this FliteTest article: Slow Stick Scratch Build https://www.flitetest.com/articles/slow-stick-scratch-build";
+          window.open('https://twitter.com/home?status='+escape(msg));
+        })
+
+        $(".email-share").on('click',function(e){
+          e.preventDefault();
+          var subject= "FliteTest Article: Slow Stick Scratch Build";
+          var body = "Check out this article on FliteTest:\r\nSlow Stick Scratch Build\r\n\r\n";
+          body += window.location.href;
+          body += "";
+          var uri = "mailto:?subject=";
+          uri += encodeURIComponent(subject);
+          uri += "&body=";
+          uri += encodeURIComponent(body);
+          window.open(uri);
+        })
+
+
+        
+
+        
+    });
+
+</script>
+
+	
+
+
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25086582-1']);
+    _gaq.push(['_trackPageview']);
+    (function () {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://' : '//') + 'stats.g.doubleclick.net/dc.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; width: 0px; height: 0px;"><div></div></div></div>
+<script>
+    var articleTypes = {"5101ffa732d9bf2206001cdc":{"_id":"5101ffa732d9bf2206001cdc","safename":"reviews","name":"Reviews"},"5101ffa732d9bf2206001cdd":{"_id":"5101ffa732d9bf2206001cdd","safename":"tips","name":"Tips"},"5101ffa732d9bf2206001cde":{"_id":"5101ffa732d9bf2206001cde","safename":"challenges","name":"Challenges"},"5101ffa732d9bf2206001cdf":{"_id":"5101ffa732d9bf2206001cdf","safename":"news","name":"News"},"510fff1c779f8cedd9f17972":{"_id":"510fff1c779f8cedd9f17972","safename":"how-to","name":"How To"},"5101ffa732d9bf2206001cdb":{"_id":"5101ffa732d9bf2206001cdb","safename":"projects","name":"Projects"},"5101ffa732d9bf2206001cda":{"_id":"5101ffa732d9bf2206001cda","safename":"just-fun","name":"Just Fun"},"523a001de4b0c56171fd49eb":{"_id":"523a001de4b0c56171fd49eb","safename":"podcasts","name":"Podcasts"}};
+    var articleCategories = {"5101ffa732d9bf2206001ce3":{"_id":"5101ffa732d9bf2206001ce3","safename":"planes","name":"Planes"},"5101ffa732d9bf2206001ce5":{"_id":"5101ffa732d9bf2206001ce5","safename":"helicopters","name":"Helicopters"},"5101ffa732d9bf2206001ce4":{"_id":"5101ffa732d9bf2206001ce4","safename":"workbench","name":"Workbench"},"5101ffa732d9bf2206001ce1":{"_id":"5101ffa732d9bf2206001ce1","safename":"scratch-builds","name":"Scratch Builds"},"5101ffa732d9bf2206001ce0":{"_id":"5101ffa732d9bf2206001ce0","safename":"fpv","name":"FPV"},"5101ffa732d9bf2206001ce2":{"_id":"5101ffa732d9bf2206001ce2","safename":"multi-rotor","name":"Multi Rotor"}};
+    var _id = false;
+    var fbIsReady = false;
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '262544150534779', // App ID from config
+            channelUrl: '//www.flitetest.com/channel.php', // Channel File
+            status: true, // check login status
+            cookie: true, // enable cookies to allow the server to access the session
+            xfbml: true  // parse XFBML
+        });
+        fbIsReady = true;
+    };
+
+    // Load the SDK Asynchronously
+    (function (d) {
+        var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
+        if (d.getElementById(id)) {
+            return;
+        }
+        js = d.createElement('script');
+        js.id = id;
+        js.async = true;
+        js.src = "//connect.facebook.net/en_US/all.js";
+        ref.parentNode.insertBefore(js, ref);
+    }(document));
+
+    function fbReady(func_name) {
+        var thisInt = setInterval(function () {
+            if (fbIsReady) {
+                clearInterval(thisInt);
+                func_name();
+            }
+        }, 100);
+    }
+
+    $().ready(function () {
+        $("a").on('click', function () {
+            if ($(this).attr('href').indexOf('shop.flitetest.com') != -1) {
+                if (allowPinnacleStoreLinks == true) { //for support page links to store
+                    return true;
+                }
+                splitUrl = $(this).attr('href').split('/');
+                splitCount = splitUrl.length;
+                lastElem = splitUrl[splitCount - 1];
+                if (lastElem == '') {
+                    lastElem = splitUrl[splitCount - 2];
+                }
+                window.location = "//store.flitetest.com/" + lastElem;
+                return false;
+            }
+        })
+    })
+	
+</script>
+
+
+
+
+
+
+<div class="ff-ext--bootstrapResponsiveHelper"><div class="visible-lg-block" attr-tag="lg" attr-version="3"></div><div class="visible-md-block" attr-tag="md" attr-version="3"></div><div class="visible-sm-block" attr-tag="sm" attr-version="3"></div><div class="visible-xs-block" attr-tag="xs" attr-version="3"></div><div class="d-none d-lg-block d-xl-none" attr-tag="lg" attr-version="4"></div><div class="d-none d-md-block d-lg-none" attr-tag="md" attr-version="4"></div><div class="d-none d-sm-block d-md-none" attr-tag="sm" attr-version="4"></div><div class="d-block d-sm-none" attr-tag="xs" attr-version="4"></div><div class="d-block d-xxl-none d-xl-none d-lg-none d-md-none d-sm-none" attr-tag="xs" attr-version="5"></div><div class="d-none d-sm-block d-xxl-none d-xl-none d-lg-none d-md-none d-xs-none" attr-tag="sm" attr-version="5"></div><div class="d-none d-md-block d-xxl-none d-xl-none d-lg-none d-sm-none d-xs-none" attr-tag="md" attr-version="5"></div><div class="d-none d-lg-block d-xxl-none d-xl-none d-md-none d-sm-none d-xs-none" attr-tag="lg" attr-version="5"></div><div class="d-none d-xl-block d-xxl-none d-lg-none d-md-none d-sm-none d-xs-none" attr-tag="xl" attr-version="5"></div><div class="d-none d-xxl-block d-xl-none d-lg-none d-md-none d-sm-none d-xs-none" attr-tag="xxl" attr-version="5"></div></div></body><iframe id="google_esf" name="google_esf" src="Slow%20Stick%20Scratch%20Build%20Flite%20Test_files/zrt_lookup.html" style="display: none;"></iframe></html>

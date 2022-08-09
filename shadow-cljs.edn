@@ -10,4 +10,5 @@
    :modules {:package {:init-fn main.core/init
                        :entries [main.core]}}}}
  :dev-http {8081 "public"}
- :nrepl {:port 3333}}
+ :nrepl {:port 3333}
+}

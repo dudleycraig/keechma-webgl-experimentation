@@ -6,8 +6,7 @@
             [helix.hooks :as hooks]
             [keechma.next.helix.core :refer [with-keechma use-sub]]
             [keechma.next.helix.lib :refer [defnc]]
-            [keechma.next.controllers.router :as router]
-            [main.ui.components.styled-components :as styled]))
+            [keechma.next.controllers.router :as router]))
 
 (defnc NavItem [{:keys [title icon active? href] :as props}]
   (d/li 

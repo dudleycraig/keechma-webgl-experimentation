@@ -153,4 +153,3 @@
 (defmethod keechma-controller/derive-state :contrived [_ state _]
   {:active-states (fsm/get-active-states state)
    :data (fsm/get-data state)})
-

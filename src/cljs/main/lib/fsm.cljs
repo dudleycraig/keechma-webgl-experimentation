@@ -10,7 +10,6 @@
    (make-response-event-name ev false))
   ([ev is-error]
    (let [ev-ns (namespace ev)
-         ;; TODO: add warning state
          suffix (if is-error "error" "response")
          ev-name (str "on-" (name ev) "-" suffix)]
      (if ev-ns
@@ -26,20 +25,24 @@
       (rescue! [error]
         (ctrl/dispatch-self ctrl on-error-event error)))))
 
+(defn run-outbound-events [ctrl outbound-events]
+  (doseq [{:fsm/keys [event] :keys [data]} outbound-events]
+    (->> (pipelines/handle ctrl event data)
+         (p/error (constantly nil)))))
+
 (defn handle [{:keys [state*] :as ctrl} ev payload]
+  (when (= :keechma.on/start ev)
+    (let [outbound-events (fsm/get-events @state*)]
+      (run-outbound-events ctrl outbound-events)))
+
   (let [state @state*
         next-state (fsm/trigger state {:fsm/event ev :data payload})
         outbound-events (fsm/get-events next-state)]
-
     (reset! state* next-state)
-
-    (doseq [{:fsm/keys [event] :keys [data]} outbound-events]
-      (->> (pipelines/handle ctrl event data)
-           (p/error (constantly nil))))))
+    (run-outbound-events ctrl outbound-events)))
 
 (defn register [ctrl pipelines]
   (let [pipelines' (->> pipelines
                         (map (fn [[pipeline-name pipeline]] [pipeline-name (wrap-pipeline pipeline-name pipeline)]))
                         (into {}))]
     (pipelines/register ctrl pipelines')))
-
