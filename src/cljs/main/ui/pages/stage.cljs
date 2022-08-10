@@ -15,11 +15,13 @@
             [keechma.next.core :as keechma]
             [keechma.next.helix.core :refer [with-keechma use-sub use-meta-sub dispatch KeechmaRoot]]
             [keechma.next.controllers.pipelines :refer [throw-promise!]]
-            [keechma.next.helix.lib :refer [defnc]]))
+            [keechma.next.helix.lib :refer [defnc]]
+            
+            [main.ui.components.gl.canvas :refer [Canvas]]))
 
 (defnc Container [props]
-  (let [{:keys [active-states data]} (use-sub props :stage)
-        {:keys [width height]} (get-in data [:canvas :dimensions])]
-    (d/section {:class "flex flex-col justify-center items-center w-3/4 h-64 bg-white rounded-lg m-3 p-3" :id "canvas"})))
+  (let [{:keys [active-states data]} (use-sub props :stage)]
+    (d/section {:class "flex flex-col justify-center items-center w-3/4 h-64 bg-white rounded-lg m-3 p-3"}
+      ($ Canvas))))
 
 (def Stage (with-keechma Container))

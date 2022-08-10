@@ -16,63 +16,21 @@
 
 (derive :stage ::controllers-pipelines/controller)
 
-(def config
-  {:canvas {:dimensions {:width 600 :height 600}}
-   :renderer {:antialias true}
-   :scene {:camera {:fov 30 :aspect 0.2 :near 1 :far 50000000 :zoom 1 :position #js[0 0 100]}}})
-
-(defn initialize-stage [config container]
-  (promesa/create
-   (fn [resolve reject]
-     (let [{{{:keys [width height] :or {width 600 height 600}} :dimensions} :canvas} config
-           {{{:keys [fov aspect near far] :or {fov 30 aspect 0.2 near 1 far 50000000}} :camera} :scene} config
-           {{:keys [antialias] :or {antialias true}} :renderer} config
-           ;; scene (three/Scene.)
-           ;; camera (three/PerspectiveCamera. fov aspect near far)
-           ;; renderer (three/WebGLRenderer. #js {"antialias" antialias})
-           ;; geometry (three/BoxGeometry. 100 100 100)
-           ;; material (three/MeshBasicMaterial. #js {"color" 0x00ff00})
-           ;; cube (three/Mesh. geometry material)
-       ]
-       ;; (. renderer setPixelRatio (. js/window -devicePixelRatio))
-       ;; (. renderer setSize width height)
-       ;; (. container appendChild (. renderer -domElement))
-       ;; (.add scene cube)
-       ;; (set! (.. camera -position -z) 120)
-       ;; (defn animate []
-       ;;   (js/requestAnimationFrame animate)
-       ;;   (set! (.. cube -rotation -x) (+ (.. cube -rotation -x) 0.01))
-       ;;   (set! (.. cube -rotation -y) (+ (.. cube -rotation -y) 0.01))
-       ;;   (.render renderer scene camera))
-       ;; (animate)
-       (resolve)))))
+(defn initialize-stage []
+  (promesa/create (fn [resolve reject] (resolve))))
 
 (def state-machine
   [:fsm/root
 
-   ;; inert state
-   [:fsm/state#inert
+   ;; loading state
+   [:fsm/state#loading
     {:fsm.on/enter (fn [state-machine {:keys [data]}]
-                     (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::init}))}
+                     (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::loading}))}
     [:fsm/transition #:fsm.transition
-                      {:event :on-init-response
-                       :target :active
+                      {:event :on-loading-response
+                       ;; :target :active
                        :fsm/on (fn [state-machine {:keys [data]}]
                                  (fsm/update-data state-machine merge data))}]]
-
-   ;; active state
-   [:fsm/state#active
-    {:fsm.on/enter (fn [state-machine {:keys [data]}]
-                     (fsm/send state-machine {:fsm/event ::active}))}
-    [:fsm/transition #:fsm.transition
-                      {:event :on-active-response
-                       :target :success}]
-    [:fsm/transition #:fsm.transition
-                      {:event :on-active-warning
-                       :target :warning}]
-    [:fsm/transition #:fsm.transition
-                      {:event :on-active-error
-                       :target :error}]]
 
    ;; success state
    [:fsm/state#success
@@ -103,42 +61,64 @@
                       {:event :reset
                        :target :inert
                        :fsm/on (fn [state-machine {:keys [data]}]
-                                 (fsm/update-data state-machine merge {:status "inert" :messages []}))}]]])
+                                 (fsm/update-data state-machine merge {:status "inert" :messages []}))}]]
+   
+   ;; inert state
+   [:fsm/state#inert
+    {:fsm.on/enter (fn [state-machine {:keys [data]}]
+                     (fsm/send (fsm/update-data state-machine merge data) {:fsm/event ::init}))}
+    [:fsm/transition #:fsm.transition
+                      {:event :on-init-response
+                       :target :loading
+                       :fsm/on (fn [state-machine {:keys [data]}]
+                                 (fsm/update-data state-machine merge data))}]]])
 
 (defmethod keechma-controller/prep :stage [controller]
   (register
-   controller
-   {::init
-    (pipelines/set-queue
-     (pipeline!
-       [payload {:keys [state*]}]
-       (let [data (fsm/get-data @state*)]
-         (merge data {:status "active" :messages []})))
-     :init)
+    controller
+    {::loading
+     (pipelines/set-queue
+       (pipeline! [payload {:keys [state*]}]
+                  (let [data (fsm/get-data @state*)
+                        {:keys [container]} data]
+                    (-> (initialize-stage)
+                        (promesa/then (fn [response] (merge {:status "active"} response)))
+                        (promesa/catch (fn [error] (throw (ex-info (:message error) error)))))))
+       :loading)
 
-    ::active
-    (pipelines/set-queue
-     (pipeline! [payload {:keys [state*]}]
-       (let [data (fsm/get-data @state*)
-             {:keys [container]} data]
-         (-> (initialize-stage config container)
-             (promesa/then (fn [response] (merge {:status "active"} response)))
-             (promesa/catch (fn [error] (throw (ex-info (:message error) error)))))))
-     :active)
+     ::active
+     (pipelines/set-queue
+       (pipeline! [payload {:keys [state*]}])
+       :active)
 
-    ::success
-    (pipelines/set-queue
-     (pipeline! [payload {:keys [state*]}]
-       (promesa/delay 750)
-       {:status "inert"})
-     :success)
+     ::success
+     (pipelines/set-queue
+       (pipeline! [payload {:keys [state*]}]
+                  (promesa/delay 750)
+                  {:status "inert"})
+       :success)
 
-    ::warning
-    (pipelines/set-queue
-     (pipeline! [payload {:keys [state*]}]
-       (promesa/delay 750)
-       {:status "inert"})
-     :warning)}))
+     ::warning
+     (pipelines/set-queue
+       (pipeline! [payload {:keys [state*]}]
+                  (promesa/delay 750)
+                  {:status "inert"})
+       :warning)
+
+     ::error
+     (pipelines/set-queue
+       (pipeline! [payload {:keys [state*]}]
+                  (promesa/delay 750)
+                  {:status "error"})
+       :error)
+
+     ::init
+     (pipelines/set-queue
+       (pipeline!
+         [payload {:keys [state*]}]
+         (let [data (fsm/get-data @state*)]
+           (merge data {:status "loading" :messages []})))
+       :init)}))
 
 (defmethod keechma-controller/start :stage [_ payload {:keys [router]} _]
   (fsm/start (fsm/compile state-machine) payload))
